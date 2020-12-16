@@ -1,0 +1,2 @@
+rootProject.name='PlantDex'
+include ':app'
