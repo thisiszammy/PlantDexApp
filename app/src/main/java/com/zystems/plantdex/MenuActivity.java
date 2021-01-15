@@ -48,6 +48,9 @@ public class MenuActivity extends AppCompatActivity {
                     case R.id.nav_drawer_search:
                         startActivity(new Intent(MenuActivity.this, SearchActivity.class));
                         break;
+                    case R.id.nav_drawer_classify:
+                        startActivity(new Intent(MenuActivity.this, CaptureActivity.class));
+                        break;
                 }
 
 
