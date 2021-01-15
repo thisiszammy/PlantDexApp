@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
     app:cardBackgroundColor="@color/colorWhite"
-    app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="10dp"
     app:cardPreventCornerOverlap="true"
@@ -46,7 +44,6 @@
                 android:textColor="@color/colorBlack"
                 android:textStyle="italic"
                 android:textSize="18sp"
-                android:layout_margin="2dp"
                 android:id="@+id/txtScientificName"/>
 
             <TextView
@@ -54,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:text="Common Name"
                 android:textSize="18sp"
-                android:layout_margin="2dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
                 android:textColor="@color/colorBlack"
                 android:id="@+id/txtCommonName"
                 />
@@ -63,8 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Percent Confidence"
-                android:textSize="18sp"
-                android:layout_margin="2dp"
+                android:textSize="12sp"
                 android:textColor="@color/colorBlack"
                 android:id="@+id/txtPercentConfidence"
 
