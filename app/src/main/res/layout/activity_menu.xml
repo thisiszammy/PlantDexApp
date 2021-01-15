@@ -6,12 +6,102 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Menu"
-        android:layout_centerInParent="true"
-        />
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimaryDark"
+            app:titleTextColor="@color/colorAccent"
+            >
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_hamburger"
+                   android:background="@null"
+                   android:layout_centerVertical="true"
+                   />
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_centerInParent="true"
+                   android:text="PlantDex"
+                   android:textSize="28dp"
+                   android:fontFamily="@font/noto_sans_bold"
+                   android:elevation="20dp"
+                   />
+
+               <ImageButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/ic_question_mark"
+                   android:background="@null"
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="12dp"
+                   android:layout_marginStart="12dp"
+                   android:layout_marginTop="8dp"
+                   android:layout_marginBottom="8dp"
+                   android:layout_marginEnd="12dp"
+                   android:layout_marginRight="12dp"
+                   />
+
+           </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/infoContainer"
+        android:layout_below="@id/appbar"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/ic_logo_dark"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="12dp"
+            />
+
+        <TextView
+            android:id="@+id/descriptionPlantDex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_description1"
+            android:layout_below="@id/appLogo"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/colorBlack"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_description1"
+            android:layout_marginHorizontal="8dp"
+            android:textColor="@color/colorBlack"
+            android:layout_below="@id/descriptionPlantDex"
+            android:layout_marginVertical="10dp"
+            />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">PlantDex</string>
+
+    <string name="app_description1">PlantDex is a Lorem ipsum dolor sit amet, consecte
+        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
+        a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
+        iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
+        unt in culpa qui officia deserunt mollit anim id est laborum. </string>
+
+    <string name="app_description2">PlantDex is a Lorem ipsum dolor sit amet, consecte
+        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
+        a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
+        iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
+        unt in culpa qui officia deserunt mollit anim id est laborum. </string>
 </resources>
