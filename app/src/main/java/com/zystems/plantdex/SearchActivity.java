@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -19,7 +20,7 @@ import com.zystems.plantdex.models.Plant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements SearchPlantAdapter.SearchPlantAdapterCallbacks {
 
     private ImageButton btnBack;
     private EditText txtPlantName;
@@ -35,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         txtPlantName = (EditText) findViewById(R.id.txtPlantName);
         rvResults = (RecyclerView) findViewById(R.id.rvResults);
-        adapter = new SearchPlantAdapter();
+        adapter = new SearchPlantAdapter(this);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,5 +83,10 @@ public class SearchActivity extends AppCompatActivity {
 
         adapter.setPlants(plants);
 
+    }
+
+    @Override
+    public void onClick(Plant plant) {
+        startActivity(new Intent(SearchActivity.this, SearchPlantAdapter.class));
     }
 }

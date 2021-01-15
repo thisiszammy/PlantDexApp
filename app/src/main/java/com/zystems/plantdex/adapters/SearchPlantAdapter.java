@@ -21,6 +21,15 @@ import java.util.List;
 public class SearchPlantAdapter extends RecyclerView.Adapter<SearchPlantAdapter.PlantViewHolder> {
 
     private List<Plant> plants;
+    private SearchPlantAdapterCallbacks callbacks;
+
+    public interface SearchPlantAdapterCallbacks{
+        void onClick(Plant plant);
+    }
+
+    public SearchPlantAdapter(SearchPlantAdapterCallbacks callbacks) {
+        this.callbacks = callbacks;
+    }
 
     public void setPlants(List<Plant> plants) {
         this.plants = plants;
@@ -55,7 +64,7 @@ public class SearchPlantAdapter extends RecyclerView.Adapter<SearchPlantAdapter.
         return plants.size();
     }
 
-    class PlantViewHolder extends RecyclerView.ViewHolder {
+    class PlantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView imgPlant;
         private TextView txtScientificName, txtCommonName, txtPercentConfidence;
@@ -66,7 +75,13 @@ public class SearchPlantAdapter extends RecyclerView.Adapter<SearchPlantAdapter.
             txtScientificName = (TextView) itemView.findViewById(R.id.txtScientificName);
             txtCommonName = (TextView) itemView.findViewById(R.id.txtCommonName);
             txtPercentConfidence = (TextView) itemView.findViewById(R.id.txtPercentConfidence);
+
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            callbacks.onClick(plants.get(getAdapterPosition()));
+        }
     }
 }
