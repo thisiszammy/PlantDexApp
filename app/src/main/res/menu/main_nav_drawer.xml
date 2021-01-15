@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_drawer_search"
+            android:title="@string/label_search"
+            android:icon="@drawable/ic_search"
+            />
+
+        <item android:id="@+id/nav_drawer_classify"
+            android:title="@string/label_cap_classify"
+            android:icon="@drawable/ic_camera"
+            />
+
+        <item android:id="@+id/nav_drawer_contribute"
+            android:title="@string/label_contribute"
+            android:icon="@drawable/ic_contribute"
+            />
+
+        <item android:id="@+id/nav_drawer_profile"
+            android:title="@string/label_profile"
+            android:icon="@drawable/ic_user"
+            />
+
+    </group>
+
+</menu>
