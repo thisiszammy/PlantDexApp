@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDim"
+            app:titleTextColor="@color/colorAccent"
+            android:id="@+id/toolBar"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:background="@color/colorPrimaryDim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back"
+                    android:id="@+id/btnBack"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/label_search"
+                    android:textSize="28dp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:layout_toRightOf="@id/btnBack"
+                    />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_question_mark"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar"
+        android:padding="12dp"
+        android:id="@+id/inputContainer">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plant Name"
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:id="@+id/lblPlantName"
+            android:layout_marginBottom="2dp"
+            />
+
+        <EditText
+            android:id="@+id/txtPlantName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/custom_input"
+            android:layout_below="@id/lblPlantName"
+            android:hint="Enter Plant Name..."
+            android:layout_marginTop="2dp"
+            android:textColorHint="@color/colorAccent"
+            android:padding="8dp"
+            android:fontFamily="@font/noto_sans_bold"
+            android:drawableRight="@drawable/ic_search"
+            android:drawableEnd="@drawable/ic_search"
+            android:drawableTint="@color/colorPrimary"
+            android:layout_marginBottom="4dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/txtPlantName"
+            android:id="@+id/txtResultsCount"
+            android:text="Please click the search button to search"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/colorPrimaryLight"
+            android:layout_marginBottom="8dp"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtResultsCount"
+            android:layout_marginTop="4dp"
+            android:id="@+id/rvResults"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
