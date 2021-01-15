@@ -42,7 +42,7 @@
                 android:fontFamily="@font/roboto_bold"
                 android:text="Scientific Name"
                 android:textColor="@color/colorBlack"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 android:textSize="18sp"
                 android:id="@+id/txtScientificName"/>
 

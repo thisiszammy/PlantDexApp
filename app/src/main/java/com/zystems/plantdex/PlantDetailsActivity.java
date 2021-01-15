@@ -18,7 +18,7 @@ import com.zystems.plantdex.adapters.CustomMapFragment;
 
 public class PlantDetailsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private ImageButton btnMap, btnBack;
+    private ImageButton btnBack;
     private GoogleMap googleMap;
     private ScrollView scrollContainer;
 
@@ -28,7 +28,6 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
         setContentView(R.layout.activity_plant_details);
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
-        btnMap = (ImageButton) findViewById(R.id.btnMap);
         CustomMapFragment mapFragment = (CustomMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         scrollContainer = (ScrollView) findViewById(R.id.scrollContainer);
 

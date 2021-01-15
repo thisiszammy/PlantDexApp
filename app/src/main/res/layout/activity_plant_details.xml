@@ -208,17 +208,9 @@
                             android:textColor="@color/colorBlack"
                             android:textStyle="bold"
                             android:textSize="20sp"
+                            android:id="@+id/labelMap"
                             />
 
-                        <ImageButton
-                            android:id="@+id/btnMap"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_expand"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:background="@null"
-                            />
 
                         <fragment
                             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -226,7 +218,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/map"
-                            android:layout_below="@id/btnMap"
+                            android:layout_below="@id/labelMap"
                             android:layout_alignParentBottom="true"
                             tools:context=".PlantDetailsActivity"
                             android:name="com.zystems.plantdex.adapters.CustomMapFragment"/>

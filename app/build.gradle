@@ -12,7 +12,7 @@ android {
             properties.load(rootProject.file("local.properties").newDataInputStream())
         }
 
-        manifestPlaceholders = [API_KEY_GOOGLE : properties.getProperty("googleapikey", "")]
+        manifestPlaceholders = [API_KEY_GOOGLE: properties.getProperty("googleapikey", "")]
 
         applicationId "com.zystems.plantdex"
         minSdkVersion 16
