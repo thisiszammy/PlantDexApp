@@ -16,8 +16,18 @@
         unt in culpa qui officia deserunt mollit anim id est laborum. </string>
 
 
+    <string name="label_features">Features</string>
     <string name="label_cap_classify">Capture &amp; Classify</string>
     <string name="label_search">Search</string>
     <string name="label_contribute">Contribute</string>
+
+    <string name="label_account_details">Account Details</string>
     <string name="label_profile">Profile</string>
+    <string name="label_login">Login</string>
+    <string name="label_logout">Logout</string>
+
+    <string name="label_support">Customer Support</string>
+    <string name="label_report">Report Issue</string>
+    <string name="label_rate">Rate App</string>
+    
 </resources>

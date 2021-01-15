@@ -3,26 +3,69 @@
 
     <group android:checkableBehavior="single">
 
-        <item android:id="@+id/nav_drawer_search"
-            android:title="@string/label_search"
-            android:icon="@drawable/ic_search"
-            />
+        <item android:title="@string/label_features">
+            <menu>
+                <item android:id="@+id/nav_drawer_search"
+                    android:title="@string/label_search"
+                    android:icon="@drawable/ic_search"
+                    />
 
-        <item android:id="@+id/nav_drawer_classify"
-            android:title="@string/label_cap_classify"
-            android:icon="@drawable/ic_camera"
-            />
+                <item android:id="@+id/nav_drawer_classify"
+                    android:title="@string/label_cap_classify"
+                    android:icon="@drawable/ic_camera"
+                    />
 
-        <item android:id="@+id/nav_drawer_contribute"
-            android:title="@string/label_contribute"
-            android:icon="@drawable/ic_contribute"
-            />
+                <item android:id="@+id/nav_drawer_contribute"
+                    android:title="@string/label_contribute"
+                    android:icon="@drawable/ic_contribute"
+                    />
 
-        <item android:id="@+id/nav_drawer_profile"
-            android:title="@string/label_profile"
-            android:icon="@drawable/ic_user"
-            />
 
+            </menu>
+        </item>
     </group>
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="@string/label_account_details">
+            <menu>
+
+                <item android:id="@+id/nav_drawer_login"
+                    android:title="@string/label_login"
+                    android:icon="@drawable/ic_custom_login"
+                    />
+
+                <item android:id="@+id/nav_drawer_profile"
+                    android:title="@string/label_profile"
+                    android:icon="@drawable/ic_user"
+                    />
+
+                <item android:id="@+id/nav_drawer_logout"
+                    android:title="@string/label_logout"
+                    android:icon="@drawable/ic_custom_logout"
+                    />
+
+
+            </menu>
+        </item>
+    </group>
+
+
+    <item android:title="@string/label_support">
+        <menu>
+
+            <item android:id="@+id/nav_drawer_report"
+                android:title="@string/label_report"
+                android:icon="@drawable/ic_report"
+                />
+
+            <item android:id="@+id/nav_drawer_rate"
+                android:title="@string/label_rate"
+                android:icon="@drawable/ic_user"
+                />
+
+
+        </menu>
+    </item>
 
 </menu>
