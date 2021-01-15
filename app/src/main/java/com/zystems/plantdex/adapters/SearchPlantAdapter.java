@@ -13,13 +13,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.zystems.plantdex.BuildConfig;
 import com.zystems.plantdex.R;
 import com.zystems.plantdex.models.Plant;
 
 import java.util.List;
 
 public class SearchPlantAdapter extends RecyclerView.Adapter<SearchPlantAdapter.PlantViewHolder> {
-
     private List<Plant> plants;
     private SearchPlantAdapterCallbacks callbacks;
 

@@ -50,6 +50,7 @@ public class MenuActivity extends AppCompatActivity {
                         break;
                 }
 
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }

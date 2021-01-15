@@ -87,6 +87,6 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
 
     @Override
     public void onClick(Plant plant) {
-        startActivity(new Intent(SearchActivity.this, SearchPlantAdapter.class));
+        startActivity(new Intent(SearchActivity.this, PlantDetailsActivity.class));
     }
 }
