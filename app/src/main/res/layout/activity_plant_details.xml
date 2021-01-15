@@ -43,6 +43,7 @@
                     android:layout_marginStart="20dp"
                     android:text="@string/label_plant_details"
                     android:textSize="28dp"
+                    android:textStyle="bold"
                     android:fontFamily="@font/noto_sans_bold"
                     />
 
@@ -77,6 +78,7 @@
         >
 
         <ScrollView
+            android:id="@+id/scrollContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -227,7 +229,7 @@
                             android:layout_below="@id/btnMap"
                             android:layout_alignParentBottom="true"
                             tools:context=".PlantDetailsActivity"
-                            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+                            android:name="com.zystems.plantdex.adapters.CustomMapFragment"/>
 
                     </RelativeLayout>
 

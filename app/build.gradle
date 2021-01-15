@@ -1,16 +1,18 @@
 apply plugin: 'com.android.application'
 
-def localPropertiesFile = rootProject.file("local.properties")
-def localProperties = new Properties()
-localProperties.load(new FileInputStream(localPropertiesFile))
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        buildConfigField "String", "API_KEY_GOOGLE", localProperties['googleapikey']
-        manifestPlaceholders = [API_KEY_GOOGLE:localProperties['googleapikey']]
+
+        Properties properties = new Properties()
+        if (rootProject.file("local.properties").exists()) {
+            properties.load(rootProject.file("local.properties").newDataInputStream())
+        }
+
+        manifestPlaceholders = [API_KEY_GOOGLE : properties.getProperty("googleapikey", "")]
 
         applicationId "com.zystems.plantdex"
         minSdkVersion 16
