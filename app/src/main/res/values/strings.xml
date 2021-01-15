@@ -29,5 +29,7 @@
     <string name="label_support">Customer Support</string>
     <string name="label_report">Report Issue</string>
     <string name="label_rate">Rate App</string>
-    
+
+    <string name="nav_drawer_open">open navigation drawer</string>
+    <string name="nav_drawer_close">close navigation drawer</string>
 </resources>
