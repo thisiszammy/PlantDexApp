@@ -15,7 +15,7 @@
         iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
         unt in culpa qui officia deserunt mollit anim id est laborum. </string>
 
-
+    <!-- navigation drawer -->
     <string name="label_features">Features</string>
     <string name="label_cap_classify">Capture &amp; Classify</string>
     <string name="label_search">Search</string>
@@ -32,4 +32,17 @@
 
     <string name="nav_drawer_open">open navigation drawer</string>
     <string name="nav_drawer_close">close navigation drawer</string>
+
+
+    <!-- Login -->
+    <string name="label_username">Username</string>
+    <string name="label_password">Password</string>
+
+    <string name="hint_username">Enter Username...</string>
+    <string name="hint_password">Enter Password...</string>
+
+    <string name="action_login">Login</string>
+    <string name="label_action_register">Don\'t have an account?</string>
+    <string name="label_action">Sign Up!</string>
+
 </resources>
