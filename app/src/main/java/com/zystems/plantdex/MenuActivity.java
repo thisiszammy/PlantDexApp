@@ -45,6 +45,9 @@ public class MenuActivity extends AppCompatActivity {
                     case R.id.nav_drawer_login:
                         startActivity(new Intent(MenuActivity.this, LoginActivity.class));
                         break;
+                    case R.id.nav_drawer_search:
+                        startActivity(new Intent(MenuActivity.this, SearchActivity.class));
+                        break;
                 }
 
                 drawerLayout.closeDrawer(GravityCompat.START);
