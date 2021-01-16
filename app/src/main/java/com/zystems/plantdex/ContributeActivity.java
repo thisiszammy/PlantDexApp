@@ -63,7 +63,7 @@ public class ContributeActivity extends AppCompatActivity {
         btnContribute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ContributeActivity.this, ClassifyResultsActivity.class));
+                startActivity(new Intent(ContributeActivity.this, ContributeFormActivity.class));
             }
         });
 

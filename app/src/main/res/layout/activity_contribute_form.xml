@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background=""
+    tools:context=".ContributeFormActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appbar"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDim"
+            app:titleTextColor="@color/colorAccent"
+            android:id="@+id/toolBar"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:background="@color/colorPrimaryDim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_back"
+                    android:id="@+id/btnBack"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/label_contribute"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:layout_toRightOf="@id/btnBack"
+                    android:layout_toEndOf="@id/btnBack"
+                    />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_question_mark"
+                    android:background="@null"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_above="@id/stickyFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appbar">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:id="@+id/containerForm">
+
+            <TextView
+                android:id="@+id/lblScientificName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_scientific_name"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:id="@+id/txtScientificName"
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:background="@drawable/custom_input"
+                android:layout_below="@id/lblScientificName"
+                android:layout_marginTop="4dp"
+                android:hint="@string/hint_scientific_name"
+                android:fontFamily="@font/noto_sans_bold"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorAccentDim"
+                />
+
+            <TextView
+                android:id="@+id/lblCommonName"
+                android:layout_below="@id/txtScientificName"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_common_name"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:id="@+id/txtCommonName"
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:background="@drawable/custom_input"
+                android:layout_below="@id/lblCommonName"
+                android:layout_marginTop="4dp"
+                android:hint="@string/hint_common_name"
+                android:fontFamily="@font/noto_sans_bold"
+                android:textColor="@color/colorBlack"
+                android:textColorHint="@color/colorAccentDim"
+                />
+
+            <TextView
+                android:id="@+id/lblRemarks"
+                android:layout_below="@id/txtCommonName"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_remarks"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:id="@+id/txtRemarks"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@id/lblRemarks"
+                android:gravity="top|start"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/custom_input"
+                android:fontFamily="@font/noto_sans_bold"
+                android:hint="@string/hint_remarks"
+                android:inputType="textMultiLine"
+                android:padding="8dp"
+                android:singleLine="false"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp"
+                android:scrollbars="vertical"
+                android:textColorHint="@color/colorAccentDim" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginVertical="12dp"
+                android:layout_below="@id/txtRemarks"
+                app:cardElevation="3dp"
+                app:cardMaxElevation="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_hotspots"
+                        android:textColor="@color/colorBlack"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:id="@+id/labelMap"
+                        />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_expand"
+                        android:id="@+id/btnExpandMap"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        />
+
+                    <fragment
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/map"
+                        android:layout_below="@id/btnExpandMap"
+                        android:layout_alignParentBottom="true"
+                        tools:context=".PlantDetailsActivity"
+                        android:name="com.zystems.plantdex.adapters.CustomMapFragment"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/stickyFooter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorPrimaryDim"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnSubmit"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_upload_cloud_small"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@null"
+                android:gravity="center"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:text="Submit"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:fontFamily="@font/noto_sans_bold"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

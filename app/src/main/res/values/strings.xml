@@ -59,7 +59,13 @@
         unt in culpa qui officia deserunt mollit anim id est laborum.
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Contribution Form -->
+    <string name="label_scientific_name">Scientific Name</string>
+    <string name="label_common_name">Common Name</string>
+    <string name="label_remarks">Remarks</string>
+
+    <string name="hint_scientific_name">Enter Scientific Name...</string>
+    <string name="hint_common_name">Enter Common Name...</string>
+    <string name="hint_remarks">Enter Remarks...</string>
 
 </resources>
