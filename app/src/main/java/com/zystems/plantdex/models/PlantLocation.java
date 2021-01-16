@@ -4,15 +4,15 @@ public class PlantLocation extends AuditableEntity {
 
     public String Latitude;
     public String Longitude;
-    public double Intensity;
+    public String LocationName;
 
     public PlantLocation() {
     }
 
-    public PlantLocation(String latitude, String longitude, double intensity) {
+    public PlantLocation(String latitude, String longitude, String locationName) {
         Latitude = latitude;
         Longitude = longitude;
-        Intensity = intensity;
+        LocationName = locationName;
     }
 
     public String getLatitude() {
@@ -31,11 +31,11 @@ public class PlantLocation extends AuditableEntity {
         Longitude = longitude;
     }
 
-    public double getIntensity() {
-        return Intensity;
+    public String getLocationName() {
+        return LocationName;
     }
 
-    public void setIntensity(double intensity) {
-        Intensity = intensity;
+    public void setLocationName(String locationName) {
+        LocationName = locationName;
     }
 }
