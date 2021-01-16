@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginEnd="6dp"
+            android:orientation="vertical"
+            android:padding="12dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Latitude : "
+                android:textColor="@color/colorBlack"
+                android:textStyle="italic|bold"
+                android:textSize="18sp"
+                android:layout_margin="4dp"
+                android:layout_alignRight="@id/lblLongitude"
+                android:id="@+id/lblLatitude"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitude : "
+                android:textSize="18sp"
+                android:layout_margin="4dp"
+                android:layout_below="@id/lblLatitude"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/lblLongitude"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TempName"
+                android:layout_toLeftOf="@id/btnRemove"
+                android:layout_toStartOf="@id/btnRemove"
+                android:textSize="18sp"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_below="@id/btnRemove"
+                android:fontFamily="@font/roboto_regular"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/lblTempName"
+                />
+
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_red_cancel"
+                android:background="@null"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/btnRemove"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
