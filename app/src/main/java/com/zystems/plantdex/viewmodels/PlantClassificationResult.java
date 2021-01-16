@@ -4,9 +4,9 @@ public class PlantClassificationResult {
     private int id;
     private String scientificName;
     private String commonName;
-    private String percentConfidence;
+    private double percentConfidence;
 
-    public PlantClassificationResult(int id, String scientificName, String commonName, String percentConfidence) {
+    public PlantClassificationResult(int id, String scientificName, String commonName, double percentConfidence) {
         this.id = id;
         this.scientificName = scientificName;
         this.commonName = commonName;
@@ -37,11 +37,11 @@ public class PlantClassificationResult {
         this.commonName = commonName;
     }
 
-    public String getPercentConfidence() {
+    public double getPercentConfidence() {
         return percentConfidence;
     }
 
-    public void setPercentConfidence(String percentConfidence) {
+    public void setPercentConfidence(double percentConfidence) {
         this.percentConfidence = percentConfidence;
     }
 }

@@ -61,6 +61,13 @@ public class ClassifyActivity extends AppCompatActivity{
             }
         });
 
+        btnClassify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ClassifyActivity.this, ClassifyResultsActivity.class));
+            }
+        });
+
     }
 
     @Override

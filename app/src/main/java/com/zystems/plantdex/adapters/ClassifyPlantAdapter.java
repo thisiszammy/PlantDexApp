@@ -1,8 +1,11 @@
 package com.zystems.plantdex.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,13 +51,16 @@ public class ClassifyPlantAdapter extends RecyclerView.Adapter<ClassifyPlantAdap
     public void onBindViewHolder(@NonNull PlantViewHolder holder, int position) {
         String scientificName = plantClassificationResultList.get(position).getScientificName();
         String commonName = "\""+plantClassificationResultList.get(position).getCommonName()+"\"";
+        String percent = "Confidence : " + String.format("%.0f",(plantClassificationResultList.get(position).getPercentConfidence() * 100)) + ""  + "%";
 
         SpannableString spannableString = new SpannableString(scientificName);
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
 
         holder.txtScientificName.setText(spannableString);
         holder.txtCommonName.setText(commonName);
-        holder.txtPercentConfidence.setText(plantClassificationResultList.get(position).getPercentConfidence());
+        holder.txtPercentConfidence.setText(percent);
+        holder.txtPercentConfidence.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f);
+        holder.txtPercentConfidence.setTypeface(null, Typeface.BOLD);
     }
 
     @Override
@@ -63,7 +69,7 @@ public class ClassifyPlantAdapter extends RecyclerView.Adapter<ClassifyPlantAdap
         return plantClassificationResultList.size();
     }
 
-    class PlantViewHolder extends RecyclerView.ViewHolder {
+    class PlantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView imgPlant;
         private TextView txtScientificName, txtCommonName, txtPercentConfidence;
@@ -75,7 +81,12 @@ public class ClassifyPlantAdapter extends RecyclerView.Adapter<ClassifyPlantAdap
             txtCommonName = (TextView) itemView.findViewById(R.id.txtCommonName);
             txtPercentConfidence = (TextView) itemView.findViewById(R.id.txtPercentConfidence);
 
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            callbacks.onClick(plantClassificationResultList.get(getAdapterPosition()));
+        }
     }
 }
