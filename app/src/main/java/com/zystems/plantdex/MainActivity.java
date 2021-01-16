@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         brandContainer.setAnimation(animation);
-
+        ApplicationUtilities.closeApp = false;
         /*
             TODO 1) : Get remote config
             TODO 2) : Show Update dialog if version mismatch, other wise proceed to next page
@@ -58,5 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void redirectToMenu(){
         startActivity(new Intent(MainActivity.this, MenuActivity.class));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(ApplicationUtilities.closeApp) finish();
     }
 }

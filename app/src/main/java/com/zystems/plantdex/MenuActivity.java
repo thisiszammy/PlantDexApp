@@ -49,7 +49,7 @@ public class MenuActivity extends AppCompatActivity {
                         startActivity(new Intent(MenuActivity.this, SearchActivity.class));
                         break;
                     case R.id.nav_drawer_classify:
-                        startActivity(new Intent(MenuActivity.this, CaptureActivity.class));
+                        startActivity(new Intent(MenuActivity.this, ClassifyActivity.class));
                         break;
                 }
 
@@ -62,9 +62,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START))
-            drawerLayout.closeDrawer(GravityCompat.START);
-        else
-            super.onBackPressed();
+        ApplicationUtilities.closeApp = true;
+        finish();
     }
 }

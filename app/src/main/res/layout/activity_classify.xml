@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CaptureActivity">
+    tools:context=".ClassifyActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -68,12 +68,16 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinder"
+    <ImageView
+        android:id="@+id/imgView"
+        android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/containerButtons"
         android:layout_below="@id/appbar"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_icon_bg_camera"
+        android:scaleType="center"
         />
 
     <RelativeLayout
@@ -84,6 +88,13 @@
         android:padding="10dp"
         android:background="@color/colorWhite">
 
+        <ImageButton
+            android:id="@+id/btnOpenFolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_action_open_folder"/>
+
 
         <ImageButton
             android:id="@+id/btnCapture"
@@ -93,6 +104,26 @@
             android:layout_centerHorizontal="true"
             android:src="@drawable/ic_action_camera_snap"/>
 
+
+        <ImageButton
+            android:id="@+id/btnCancel"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_action_camera_cancel"/>
+
+
+        <ImageButton
+            android:id="@+id/btnClassify"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_action_classify"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 
