@@ -82,10 +82,13 @@ public class ClassifyActivity extends AppCompatActivity{
                 return;
             }
         }else if(requestCode == REQ_OPEN_GALLERY){
-            if(resultCode == RESULT_OK) loadImageFromFile(data.getData());
+            if(resultCode == RESULT_OK){
+                loadImageFromFile(data.getData());
+                return;
+            }
         }
 
-        btnClassify.setVisibility(View.GONE);
+        btnClassify.setVisibility(View.INVISIBLE);
     }
 
     private void loadImageFromFile(File file){

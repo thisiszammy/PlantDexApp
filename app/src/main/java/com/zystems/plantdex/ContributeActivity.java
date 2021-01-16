@@ -81,10 +81,13 @@ public class ContributeActivity extends AppCompatActivity {
                 return;
             }
         }else if(requestCode == REQ_OPEN_GALLERY){
-            if(resultCode == RESULT_OK) loadImageFromFile(data.getData());
+            if(resultCode == RESULT_OK){
+                loadImageFromFile(data.getData());
+                return;
+            }
         }
 
-        btnContribute.setVisibility(View.GONE);
+        btnContribute.setVisibility(View.INVISIBLE);
     }
 
     private void loadImageFromFile(File file){

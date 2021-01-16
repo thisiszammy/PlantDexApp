@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background=""
     tools:context=".ContributeFormActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -70,10 +69,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
+        android:id="@+id/scrollContainer"
         android:layout_above="@id/stickyFooter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/appbar">
+
 
 
         <RelativeLayout
@@ -82,98 +83,119 @@
             android:padding="12dp"
             android:id="@+id/containerForm">
 
-            <TextView
-                android:id="@+id/lblScientificName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_scientific_name"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:fontFamily="@font/roboto_regular"
-                android:textStyle="bold"
-                />
-
-            <EditText
-                android:id="@+id/txtScientificName"
-                android:inputType="textPersonName"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:background="@drawable/custom_input"
-                android:layout_below="@id/lblScientificName"
-                android:layout_marginTop="4dp"
-                android:hint="@string/hint_scientific_name"
-                android:fontFamily="@font/noto_sans_bold"
-                android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorAccentDim"
-                />
-
-            <TextView
-                android:id="@+id/lblCommonName"
-                android:layout_below="@id/txtScientificName"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_common_name"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:fontFamily="@font/roboto_regular"
-                android:textStyle="bold"
-                />
+                android:layout_marginVertical="6dp"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="3dp"
+                android:id="@+id/containerInput">
 
-            <EditText
-                android:id="@+id/txtCommonName"
-                android:inputType="textPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:padding="8dp"
-                android:background="@drawable/custom_input"
-                android:layout_below="@id/lblCommonName"
-                android:layout_marginTop="4dp"
-                android:hint="@string/hint_common_name"
-                android:fontFamily="@font/noto_sans_bold"
-                android:textColor="@color/colorBlack"
-                android:textColorHint="@color/colorAccentDim"
-                />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp">
 
-            <TextView
-                android:id="@+id/lblRemarks"
-                android:layout_below="@id/txtCommonName"
-                android:layout_marginTop="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_remarks"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:fontFamily="@font/roboto_regular"
-                android:textStyle="bold"
-                />
+                <TextView
+                    android:id="@+id/lblScientificName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_scientific_name"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textStyle="bold"
+                    />
 
-            <EditText
-                android:id="@+id/txtRemarks"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_below="@id/lblRemarks"
-                android:gravity="top|start"
-                android:layout_marginTop="4dp"
-                android:background="@drawable/custom_input"
-                android:fontFamily="@font/noto_sans_bold"
-                android:hint="@string/hint_remarks"
-                android:inputType="textMultiLine"
-                android:padding="8dp"
-                android:singleLine="false"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp"
-                android:scrollbars="vertical"
-                android:textColorHint="@color/colorAccentDim" />
+                <EditText
+                    android:id="@+id/txtScientificName"
+                    android:inputType="textPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:background="@drawable/custom_input"
+                    android:layout_below="@id/lblScientificName"
+                    android:layout_marginTop="4dp"
+                    android:hint="@string/hint_scientific_name"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorAccentDim"
+                    />
+
+                <TextView
+                    android:id="@+id/lblCommonName"
+                    android:layout_below="@id/txtScientificName"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_common_name"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textStyle="bold"
+                    />
+
+                <EditText
+                    android:id="@+id/txtCommonName"
+                    android:inputType="textPersonName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:background="@drawable/custom_input"
+                    android:layout_below="@id/lblCommonName"
+                    android:layout_marginTop="4dp"
+                    android:hint="@string/hint_common_name"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:textColor="@color/colorBlack"
+                    android:textColorHint="@color/colorAccentDim"
+                    />
+
+                <TextView
+                    android:id="@+id/lblRemarks"
+                    android:layout_below="@id/txtCommonName"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_remarks"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textStyle="bold"
+                    />
+
+                <EditText
+                    android:id="@+id/txtRemarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_below="@id/lblRemarks"
+                    android:gravity="top|start"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/custom_input"
+                    android:fontFamily="@font/noto_sans_bold"
+                    android:hint="@string/hint_remarks"
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"
+                    android:singleLine="false"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp"
+                    android:scrollbars="vertical"
+                    android:textColorHint="@color/colorAccentDim" />
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginVertical="12dp"
-                android:layout_below="@id/txtRemarks"
-                app:cardElevation="3dp"
-                app:cardMaxElevation="4dp">
+                android:layout_marginVertical="6dp"
+                android:layout_below="@id/containerInput"
+                app:cardElevation="2dp"
+                app:cardMaxElevation="3dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
