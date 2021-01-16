@@ -61,7 +61,7 @@
 
             <item android:id="@+id/nav_drawer_rate"
                 android:title="@string/label_rate"
-                android:icon="@drawable/ic_user"
+                android:icon="@drawable/ic_rate"
                 />
 
 

@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ContributeFormActivity"></activity>
+        <activity android:name=".ContributeMapActivity"></activity>
+        <activity android:name=".ContributeFormActivity" />
         <activity android:name=".ContributeActivity" />
         <activity android:name=".ClassifyResultsActivity" />
         <activity android:name=".ClassifyActivity" />

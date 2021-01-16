@@ -2,33 +2,24 @@ package com.zystems.plantdex;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.zystems.plantdex.adapters.CustomMapFragment;
 
-public class ContributeFormActivity extends AppCompatActivity  implements OnMapReadyCallback{
+public class ContributeMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private ImageButton btnBack;
-    private ImageButton btnExpandMap;
-
-    private EditText txtScientificName;
-    private EditText txtCommonName;
-    private EditText txtRemarks;
-
-    private RelativeLayout btnSubmit;
+    private ImageButton btnBack, btnAddLocation;
+    private Button btnSaveMap;
 
     private GoogleMap googleMap;
     private ScrollView scrollContainer;
@@ -36,16 +27,11 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contribute_form);
+        setContentView(R.layout.activity_contribute_map);
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
-        btnExpandMap = (ImageButton) findViewById(R.id.btnExpandMap);
-
-        txtScientificName = (EditText) findViewById(R.id.txtScientificName);
-        txtCommonName = (EditText) findViewById(R.id.txtCommonName);
-        txtRemarks = (EditText) findViewById(R.id.txtRemarks);
-
-        btnSubmit = (RelativeLayout) findViewById(R.id.btnSubmit);
+        btnSaveMap = (Button) findViewById(R.id.btnSaveMap);
+        btnAddLocation = (ImageButton) findViewById(R.id.btnAddLocation);
 
         CustomMapFragment mapFragment = (CustomMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         scrollContainer = (ScrollView) findViewById(R.id.scrollContainer);
@@ -57,12 +43,6 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
             }
         });
 
-        btnExpandMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ContributeFormActivity.this, ContributeMapActivity.class));
-            }
-        });
 
         mapFragment.getMapAsync(this);
     }
@@ -83,7 +63,6 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
                     }
                 });
     }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
