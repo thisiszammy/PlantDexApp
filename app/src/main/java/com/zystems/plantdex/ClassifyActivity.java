@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ public class ClassifyActivity extends AppCompatActivity{
     private ImageView imgView;
 
     private int REQ_CAPTURE_IMAGE = 1;
+    private int REQ_OPEN_GALLERY = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,13 @@ public class ClassifyActivity extends AppCompatActivity{
             }
         });
 
+        btnOpenFolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
     }
 
     @Override
@@ -65,6 +74,8 @@ public class ClassifyActivity extends AppCompatActivity{
                 loadImageFromFile(file);
                 return;
             }
+        }else if(requestCode == REQ_OPEN_GALLERY){
+            if(resultCode == RESULT_OK) loadImageFromFile(data.getData());
         }
 
         btnClassify.setVisibility(View.GONE);
@@ -76,5 +87,16 @@ public class ClassifyActivity extends AppCompatActivity{
         imgView.setImageURI(uri);
         imgView.setRotation(90f);
         btnClassify.setVisibility(View.VISIBLE);
+    }
+
+    private void loadImageFromFile(Uri uri){
+        imgView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imgView.setImageURI(uri);
+        btnClassify.setVisibility(View.VISIBLE);
+    }
+
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, REQ_OPEN_GALLERY);
     }
 }
