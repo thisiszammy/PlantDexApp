@@ -114,6 +114,11 @@ public class ContributeMapActivity extends AppCompatActivity implements OnMapRea
         loadLocationsMarkers();
     }
 
+    @Override
+    public void onClickLocation(PlantLocation location) {
+        if(googleMap != null) googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+    }
+
     private void loadLocationsView(){
         adapter.setLocations(plantLocations);
     }

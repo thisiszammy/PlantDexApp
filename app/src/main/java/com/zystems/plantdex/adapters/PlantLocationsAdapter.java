@@ -48,6 +48,7 @@ public class PlantLocationsAdapter extends RecyclerView.Adapter<PlantLocationsAd
 
     public interface PlantLocationsAdapterCallbacks{
         void removeLocation(PlantLocation location);
+        void onClickLocation(PlantLocation location);
     }
 
     public PlantLocationsAdapter(PlantLocationsAdapterCallbacks callbacks) {
@@ -59,7 +60,7 @@ public class PlantLocationsAdapter extends RecyclerView.Adapter<PlantLocationsAd
         notifyDataSetChanged();
     }
 
-    public class PlantLocationViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PlantLocationViewHolder extends RecyclerView.ViewHolder {
 
         private TextView lblLatitude, lblLongitude, lblLocationName;
         private ImageButton btnRemove;
@@ -71,13 +72,20 @@ public class PlantLocationsAdapter extends RecyclerView.Adapter<PlantLocationsAd
             lblLocationName = (TextView) itemView.findViewById(R.id.lblTempName);
             btnRemove = (ImageButton) itemView.findViewById(R.id.btnRemove);
 
-            btnRemove.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callbacks.onClickLocation(locations.get(getAdapterPosition()));
+                }
+            });
+            btnRemove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callbacks.removeLocation(locations.get(getAdapterPosition()));
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-            callbacks.removeLocation(locations.get(getAdapterPosition()));
-        }
     }
 
 }
