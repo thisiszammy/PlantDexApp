@@ -131,6 +131,7 @@
                 android:fontFamily="@font/noto_sans_bold"
                 android:textColor="@android:color/white"
                 android:layout_centerInParent="true"
+                android:id="@+id/btnHome2"
                 />
 
 

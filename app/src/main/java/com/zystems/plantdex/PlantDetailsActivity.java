@@ -128,13 +128,27 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
     }
 
     private void loadPlantData(int plantId){
-        for(Plant plant : ApplicationUtilities.getSearchPlantsByNameResults()){
-            if(plant.getId() == plantId){
-                this.selectedPlant = plant;
-                break;
-            }
+        this.selectedPlant = null;
 
+        if(ApplicationUtilities.getSearchPlantsByNameResults() != null){
+            for(Plant plant : ApplicationUtilities.getSearchPlantsByNameResults()){
+                if(plant.getId() == plantId){
+                    this.selectedPlant = plant;
+                    break;
+                }
+            }
         }
+
+
+        if(ApplicationUtilities.getClassifyPlantsResults() != null && selectedPlant == null){
+            for(Plant plant : ApplicationUtilities.getClassifyPlantsResults()){
+                if(plant.getId() == plantId){
+                    this.selectedPlant = plant;
+                    break;
+                }
+            }
+        }
+
 
         Log.d(PlantDetailsActivity.class.getSimpleName(), plantId + "");
 

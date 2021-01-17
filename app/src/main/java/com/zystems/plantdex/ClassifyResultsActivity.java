@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.zystems.plantdex.adapters.ClassifyPlantAdapter;
+import com.zystems.plantdex.models.Plant;
 import com.zystems.plantdex.models.PlantClassificationResult;
 
 import java.util.ArrayList;
@@ -50,18 +51,24 @@ public class ClassifyResultsActivity extends AppCompatActivity implements Classi
 
     private void loadPlants(){
 
-        List<PlantClassificationResult> plants = new ArrayList<>();
+        List<PlantClassificationResult> classificationResults = new ArrayList<>();
 
-        PlantClassificationResult plant = new PlantClassificationResult(1, "Allium Cepa", "Onion", .99);
+        for(Plant plant : ApplicationUtilities.getClassifyPlantsResults()){
 
-        plants.add(plant);
-        plants.add(plant);
+            classificationResults.add(new PlantClassificationResult(plant.getId(), plant.getScientificName(), plant.getCommonName(), .96f));
 
-        classifyPlantAdapter.setPlantClassificationResultList(plants);
+        }
+        String resultsCount = "Found " + classificationResults.size() + " Results";
+        txtResultsCount.setText(resultsCount);
+
+
+        classifyPlantAdapter.setPlantClassificationResultList(classificationResults);
     }
 
     @Override
     public void onClick(PlantClassificationResult plantClassificationResult) {
-        startActivity(new Intent(ClassifyResultsActivity.this, PlantDetailsActivity.class));
+        Intent intent = new Intent(new Intent(ClassifyResultsActivity.this, PlantDetailsActivity.class));
+        intent.putExtra(ApplicationUtilities.SEARCH_SELECTED_PLANT, plantClassificationResult.getId());
+        startActivity(intent);
     }
 }

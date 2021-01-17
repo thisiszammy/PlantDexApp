@@ -66,4 +66,16 @@ public class ApplicationUtilities {
     public static void setSearchPlantsByNameResults(List<Plant> searchPlantsByNameResults) {
         ApplicationUtilities.searchPlantsByNameResults = searchPlantsByNameResults;
     }
+
+
+    // Classify Plant Results
+    public static List<Plant> classifyPlantsResults;
+
+    public static List<Plant> getClassifyPlantsResults() {
+        return classifyPlantsResults;
+    }
+
+    public static void setClassifyPlantsResults(List<Plant> classifyPlantsResults) {
+        ApplicationUtilities.classifyPlantsResults = classifyPlantsResults;
+    }
 }

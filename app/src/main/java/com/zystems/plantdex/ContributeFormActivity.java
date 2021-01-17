@@ -10,6 +10,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -46,6 +47,7 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
 
     private RelativeLayout rootLayout, layoutLoading;
     private ContributionsManagementResponseViewModel viewModel;
+    private Button btnSubmit2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
         viewModel = new ViewModelProvider(this).get(ContributionsManagementResponseViewModel.class);
 
         btnSubmit = (RelativeLayout) findViewById(R.id.btnSubmit);
+        btnSubmit2 = (Button) findViewById(R.id.btnSubmit2);
 
         CustomMapFragment mapFragment = (CustomMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         scrollContainer = (ScrollView) findViewById(R.id.scrollContainer);
@@ -84,6 +87,13 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
         });
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveContributionForm();
+            }
+        });
+
+        btnSubmit2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveContributionForm();
