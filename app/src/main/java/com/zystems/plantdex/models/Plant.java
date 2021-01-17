@@ -1,84 +1,97 @@
 package com.zystems.plantdex.models;
 
-public class Plant extends AuditableEntity{
-    public int Id;
-    public String CommonName;
-    public String ScientificName;
-    public String ShortDescription;
-    public String Description;
-    public String Attributes;
-    public String Locations;
-    public String _Id;
+import java.util.Date;
 
+public class Plant extends AuditableEntity{
+    private int id;
+    private String commonName;
+    private String scientificName;
+    private String shortDescription;
+    private String description;
+    private String attributes;
+    private String locations;
+    private String _Id;
 
     public Plant() {
     }
 
     public Plant(int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id) {
-        Id = id;
-        CommonName = commonName;
-        ScientificName = scientificName;
-        ShortDescription = shortDescription;
-        Description = description;
-        Attributes = attributes;
-        Locations = locations;
+        this.id = id;
+        this.commonName = commonName;
+        this.scientificName = scientificName;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.attributes = attributes;
+        this.locations = locations;
+        this._Id = _Id;
+    }
+
+    public Plant(String createdBy, Date createdOn, String lastModifiedBy, Date lastModifiedOn, String previousValue, int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id) {
+        super(createdBy, createdOn, lastModifiedBy, lastModifiedOn, previousValue);
+        this.id = id;
+        this.commonName = commonName;
+        this.scientificName = scientificName;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.attributes = attributes;
+        this.locations = locations;
         this._Id = _Id;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getCommonName() {
-        return CommonName;
+        return commonName;
     }
 
     public void setCommonName(String commonName) {
-        CommonName = commonName;
+        this.commonName = commonName;
     }
 
     public String getScientificName() {
-        return ScientificName;
+        return scientificName;
     }
 
     public void setScientificName(String scientificName) {
-        ScientificName = scientificName;
+        this.scientificName = scientificName;
     }
 
     public String getShortDescription() {
-        return ShortDescription;
+        return shortDescription;
     }
 
     public void setShortDescription(String shortDescription) {
-        ShortDescription = shortDescription;
+        this.shortDescription = shortDescription;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public String getAttributes() {
-        return Attributes;
+        return attributes;
     }
 
     public void setAttributes(String attributes) {
-        Attributes = attributes;
+        this.attributes = attributes;
     }
 
     public String getLocations() {
-        return Locations;
+        return locations;
     }
 
     public void setLocations(String locations) {
-        Locations = locations;
+        this.locations = locations;
     }
 
     public String get_Id() {

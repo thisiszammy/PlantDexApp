@@ -1,40 +1,49 @@
 package com.zystems.plantdex.models;
 
+import java.util.Date;
+
 public class PlantAttribute extends AuditableEntity{
-    public int Id;
-    public String AttributeName;
-    public String AttributeValue;
+    private int id;
+    private String attributeName;
+    private String attributeValue;
 
     public PlantAttribute() {
     }
 
     public PlantAttribute(int id, String attributeName, String attributeValue) {
-        Id = id;
-        AttributeName = attributeName;
-        AttributeValue = attributeValue;
+        this.id = id;
+        this.attributeName = attributeName;
+        this.attributeValue = attributeValue;
+    }
+
+    public PlantAttribute(String createdBy, Date createdOn, String lastModifiedBy, Date lastModifiedOn, String previousValue, int id, String attributeName, String attributeValue) {
+        super(createdBy, createdOn, lastModifiedBy, lastModifiedOn, previousValue);
+        this.id = id;
+        this.attributeName = attributeName;
+        this.attributeValue = attributeValue;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getAttributeName() {
-        return AttributeName;
+        return attributeName;
     }
 
     public void setAttributeName(String attributeName) {
-        AttributeName = attributeName;
+        this.attributeName = attributeName;
     }
 
     public String getAttributeValue() {
-        return AttributeValue;
+        return attributeValue;
     }
 
     public void setAttributeValue(String attributeValue) {
-        AttributeValue = attributeValue;
+        this.attributeValue = attributeValue;
     }
 }

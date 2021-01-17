@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContributeFormActivity">
+    tools:context=".ContributeFormActivity"
+    android:id="@+id/rootLayout">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -281,6 +282,7 @@
                 android:fontFamily="@font/noto_sans_bold"
                 android:textColor="@android:color/white"
                 android:layout_centerInParent="true"
+                android:id="@+id/btnSubmit2"
                 />
 
 
@@ -288,4 +290,20 @@
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLoadingBg"
+        android:id="@+id/layoutLoading"
+        android:visibility="invisible"
+        >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            />
+
+    </RelativeLayout>
 </RelativeLayout>

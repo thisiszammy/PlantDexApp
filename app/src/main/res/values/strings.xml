@@ -45,6 +45,8 @@
     <string name="label_action_register">Don\'t have an account?</string>
     <string name="label_action">Sign Up!</string>
 
+    <!-- Search -->
+    <string name="label_search_prompt">Please click the search button to search</string>
 
     <!-- Plant Details -->
     <string name="label_plant_details">Plant Details</string>
@@ -67,5 +69,11 @@
     <string name="hint_scientific_name">Enter Scientific Name...</string>
     <string name="hint_common_name">Enter Common Name...</string>
     <string name="hint_remarks">Enter Remarks...</string>
+
+    <string name="label_contribute_success_desc1">You have successfully submitted a contribution! The plant data will be checked by the administrators and changes will
+        be made to the database accordingly. Thank you for contributing!</string>
+
+    <string name="label_contribute_success_desc2">You have successfully submitted a contribution! The plant data will be checked by the administrators and changes will
+        be made to the database accordingly. Thank you for contributing!</string>
 
 </resources>

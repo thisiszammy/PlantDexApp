@@ -1,16 +1,23 @@
-package com.zystems.plantdex.viewmodels;
+package com.zystems.plantdex.models;
 
-public class PlantClassificationResult {
+import java.util.List;
+
+public class ContributionSubmission {
     private int id;
     private String scientificName;
     private String commonName;
-    private double percentConfidence;
+    private String remarks;
+    private String locations;
 
-    public PlantClassificationResult(int id, String scientificName, String commonName, double percentConfidence) {
+    public ContributionSubmission() {
+    }
+
+    public ContributionSubmission(int id, String scientificName, String commonName, String remarks, String locations) {
         this.id = id;
         this.scientificName = scientificName;
         this.commonName = commonName;
-        this.percentConfidence = percentConfidence;
+        this.remarks = remarks;
+        this.locations = locations;
     }
 
     public int getId() {
@@ -37,11 +44,19 @@ public class PlantClassificationResult {
         this.commonName = commonName;
     }
 
-    public double getPercentConfidence() {
-        return percentConfidence;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setPercentConfidence(double percentConfidence) {
-        this.percentConfidence = percentConfidence;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public String getLocations() {
+        return locations;
+    }
+
+    public void setLocations(String locations) {
+        this.locations = locations;
     }
 }

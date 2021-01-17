@@ -3,49 +3,60 @@ package com.zystems.plantdex.models;
 import java.util.Date;
 
 public class AuditableEntity {
-    public String CreatedBy;
-    public Date CreatedOn;
-    public String LastModifiedBy;
-    public Date LastModifiedOn;
-    public String PreviousValue;
+    private String createdBy;
+    private Date createdOn;
+    private String lastModifiedBy;
+    private Date lastModifiedOn;
+    private String previousValue;
+
+    public AuditableEntity() {
+    }
+
+    public AuditableEntity(String createdBy, Date createdOn, String lastModifiedBy, Date lastModifiedOn, String previousValue) {
+        this.createdBy = createdBy;
+        this.createdOn = createdOn;
+        this.lastModifiedBy = lastModifiedBy;
+        this.lastModifiedOn = lastModifiedOn;
+        this.previousValue = previousValue;
+    }
 
     public String getCreatedBy() {
-        return CreatedBy;
+        return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {
-        CreatedBy = createdBy;
+        this.createdBy = createdBy;
     }
 
     public Date getCreatedOn() {
-        return CreatedOn;
+        return createdOn;
     }
 
     public void setCreatedOn(Date createdOn) {
-        CreatedOn = createdOn;
+        this.createdOn = createdOn;
     }
 
     public String getLastModifiedBy() {
-        return LastModifiedBy;
+        return lastModifiedBy;
     }
 
     public void setLastModifiedBy(String lastModifiedBy) {
-        LastModifiedBy = lastModifiedBy;
+        this.lastModifiedBy = lastModifiedBy;
     }
 
     public Date getLastModifiedOn() {
-        return LastModifiedOn;
+        return lastModifiedOn;
     }
 
     public void setLastModifiedOn(Date lastModifiedOn) {
-        LastModifiedOn = lastModifiedOn;
+        this.lastModifiedOn = lastModifiedOn;
     }
 
     public String getPreviousValue() {
-        return PreviousValue;
+        return previousValue;
     }
 
     public void setPreviousValue(String previousValue) {
-        PreviousValue = previousValue;
+        this.previousValue = previousValue;
     }
 }
