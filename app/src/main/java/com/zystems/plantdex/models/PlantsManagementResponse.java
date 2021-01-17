@@ -1,4 +1,4 @@
-package com.zystems.plantdex.viewmodels;
+package com.zystems.plantdex.models;
 
 import com.zystems.plantdex.models.Plant;
 

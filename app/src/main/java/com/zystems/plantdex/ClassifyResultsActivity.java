@@ -11,8 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.zystems.plantdex.adapters.ClassifyPlantAdapter;
-import com.zystems.plantdex.models.Plant;
-import com.zystems.plantdex.viewmodels.PlantClassificationResult;
+import com.zystems.plantdex.models.PlantClassificationResult;
 
 import java.util.ArrayList;
 import java.util.List;

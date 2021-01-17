@@ -1,7 +1,6 @@
 package com.zystems.plantdex.adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -16,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zystems.plantdex.R;
-import com.zystems.plantdex.viewmodels.PlantClassificationResult;
+import com.zystems.plantdex.models.PlantClassificationResult;
 
 import java.util.List;
 
