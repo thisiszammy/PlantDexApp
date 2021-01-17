@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Location Name"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        />
+
+
+    <EditText
+        android:id="@+id/txtLocationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Location Name..."
+        android:textColorHint="@color/colorAccentDim"
+        android:inputType="number"
+        android:background="@drawable/custom_input"
+        android:padding="10dp"
+
+        />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:text="Latitude Coordinates"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        />
+
+
+    <EditText
+        android:id="@+id/txtLatitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Latitude..."
+        android:textColorHint="@color/colorAccentDim"
+        android:inputType="numberDecimal"
+        android:background="@drawable/custom_input"
+        android:padding="10dp"
+        android:layout_marginVertical="5dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/lblLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:text="Longitude Coordinates"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/colorBlack"
+        android:textStyle="bold"
+        />
+
+
+    <EditText
+        android:id="@+id/txtLongitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Longitude..."
+        android:textColorHint="@color/colorAccentDim"
+        android:inputType="numberDecimal"
+        android:background="@drawable/custom_input"
+        android:padding="10dp"
+        android:layout_marginVertical="5dp"
+        />
+
+</LinearLayout>

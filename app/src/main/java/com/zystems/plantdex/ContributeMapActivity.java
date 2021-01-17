@@ -43,6 +43,12 @@ public class ContributeMapActivity extends AppCompatActivity implements OnMapRea
             }
         });
 
+        btnAddLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         mapFragment.getMapAsync(this);
     }
