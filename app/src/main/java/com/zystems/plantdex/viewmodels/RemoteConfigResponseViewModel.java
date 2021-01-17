@@ -1,5 +1,7 @@
 package com.zystems.plantdex.viewmodels;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -32,11 +34,13 @@ public class RemoteConfigResponseViewModel extends ViewModel {
             @Override
             public void onResponse(Call<RemoteConfigResponse> call, Response<RemoteConfigResponse> response) {
                 remoteConfigResponseMutableLiveData.postValue(response.body());
+                Log.d(RemoteConfigResponseViewModel.class.getSimpleName(), response.code() + "");
             }
 
             @Override
             public void onFailure(Call<RemoteConfigResponse> call, Throwable t) {
                 remoteConfigResponseMutableLiveData.postValue(null);
+                t.printStackTrace();
             }
         });
     }

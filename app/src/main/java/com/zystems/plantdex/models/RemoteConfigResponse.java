@@ -1,9 +1,9 @@
 package com.zystems.plantdex.models;
 
 public class RemoteConfigResponse {
-    public String message;
-    public boolean isSuccessful;
-    public String version;
+    private String message;
+    private boolean isSuccessful;
+    private String version;
 
     public RemoteConfigResponse() {
     }

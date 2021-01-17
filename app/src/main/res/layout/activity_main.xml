@@ -39,6 +39,7 @@
 
 
     <RelativeLayout
+        android:visibility="invisible"
         android:id="@+id/containerRefresh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

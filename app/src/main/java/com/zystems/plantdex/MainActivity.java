@@ -21,6 +21,7 @@ import com.zystems.plantdex.viewmodels.RemoteConfigResponseViewModel;
 public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout brandContainer;
+    private RelativeLayout containerRefresh;
     private ProgressBar progressBar;
     private RemoteConfigResponseViewModel viewModel;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.component_fade_in);
         brandContainer = (RelativeLayout) findViewById(R.id.brandContainer);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        containerRefresh = (RelativeLayout) findViewById(R.id.containerRefresh);
 
         brandContainer.setAnimation(animation);
         ApplicationUtilities.setCloseApp(false);
@@ -54,14 +56,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(RemoteConfigResponse remoteConfigResponse) {
                 if(remoteConfigResponse != null) {
-                    if(!remoteConfigResponse.isSuccessful){
+                    if(!remoteConfigResponse.isSuccessful()){
                         showApiErrorResponse(remoteConfigResponse);
                         return;
                     }
 
-                    if(remoteConfigResponse.version.equals(ApplicationUtilities.getCurrentAppVersionName(MainActivity.this))) redirectToMenu();
+                    if(remoteConfigResponse.getVersion().equals(ApplicationUtilities.getCurrentAppVersionName(MainActivity.this))) redirectToMenu();
 
                     forceUpdateDialog();
+                    return;
                 }
                 showApiErrorResponse(null);
             }
@@ -74,20 +77,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showApiErrorResponse(RemoteConfigResponse response){
-        Toast.makeText(MainActivity.this, (response == null) ? "Cannot connect to the server!" : response.message, Toast.LENGTH_LONG).show();
+        containerRefresh.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+        Toast.makeText(MainActivity.this, (response == null) ? "Network Error" : response.getMessage(), Toast.LENGTH_LONG).show();
     }
 
     private void redirectToMenu(){
-        /*
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                redirectToMenu();
+                startActivity(new Intent(MainActivity.this, MenuActivity.class));
             }
         }, 4000);
-         */
-
-        startActivity(new Intent(MainActivity.this, MenuActivity.class));
     }
 
     @Override

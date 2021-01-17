@@ -6,8 +6,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetroInstance {
 
     // API Environments
-    public static String TEST_ENVIRONMENT = "https://localhost:44304/api/";
-    public static String LIVE_ENVIRONMENT = "https://localhost:44304/api/";
+    public static String TEST_ENVIRONMENT = "http://10.0.2.2:44358/api/";
+    public static String LIVE_ENVIRONMENT = "https://localhost:44358/api/";
     public static String ACTIVE_ENVIRONMENT = TEST_ENVIRONMENT;
 
     // API Remote Config Calls
