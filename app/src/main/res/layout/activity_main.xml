@@ -65,6 +65,7 @@
             android:layout_centerHorizontal="true"
             android:width="200dp"
             android:gravity="center"
+            android:layout_marginTop="4dp"
             android:textSize="12sp"
             />
 

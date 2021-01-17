@@ -6,10 +6,13 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.common.util.MurmurHash3;
+import com.google.gson.Gson;
 import com.zystems.plantdex.models.PlantsManagementResponse;
 import com.zystems.plantdex.models.RemoteConfigResponse;
 import com.zystems.plantdex.network.APIService;
 import com.zystems.plantdex.network.RetroInstance;
+
+import org.json.JSONTokener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +37,7 @@ public class RemoteConfigResponseViewModel extends ViewModel {
             @Override
             public void onResponse(Call<RemoteConfigResponse> call, Response<RemoteConfigResponse> response) {
                 remoteConfigResponseMutableLiveData.postValue(response.body());
-                Log.d(RemoteConfigResponseViewModel.class.getSimpleName(), response.code() + "");
+                Log.d(RemoteConfigResponseViewModel.class.getSimpleName(), (new Gson()).toJson(response.body()) + "");
             }
 
             @Override

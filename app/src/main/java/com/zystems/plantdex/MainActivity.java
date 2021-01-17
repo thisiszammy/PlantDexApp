@@ -8,9 +8,11 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout containerRefresh;
     private ProgressBar progressBar;
     private RemoteConfigResponseViewModel viewModel;
+    private ImageButton btnRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,46 +37,61 @@ public class MainActivity extends AppCompatActivity {
         brandContainer = (RelativeLayout) findViewById(R.id.brandContainer);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         containerRefresh = (RelativeLayout) findViewById(R.id.containerRefresh);
+        btnRefresh = (ImageButton) findViewById(R.id.btnRefresh);
 
         brandContainer.setAnimation(animation);
         ApplicationUtilities.setCloseApp(false);
         viewModel = new ViewModelProvider(MainActivity.this).get(RemoteConfigResponseViewModel.class);
-
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getRemoteConfig();
+            }
+        });
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                progressBar.setVisibility(View.VISIBLE);
                 getRemoteConfig();
             }
         },2000);
 
-
     }
 
     private void getRemoteConfig(){
+        progressBar.setVisibility(View.VISIBLE);
+        containerRefresh.setVisibility(View.INVISIBLE);
         viewModel.getRemoteConfigObserver().observe(MainActivity.this, new Observer<RemoteConfigResponse>() {
             @Override
             public void onChanged(RemoteConfigResponse remoteConfigResponse) {
-                if(remoteConfigResponse != null) {
-                    if(!remoteConfigResponse.isSuccessful()){
-                        showApiErrorResponse(remoteConfigResponse);
-                        return;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(remoteConfigResponse != null) {
+                            if(!remoteConfigResponse.isSuccessful()){
+                                showApiErrorResponse(remoteConfigResponse);
+                                return;
+                            }
+                            if(remoteConfigResponse.getVersion().equals(ApplicationUtilities.getCurrentAppVersionName(MainActivity.this))){
+                                redirectToMenu();
+                                return;
+                            }
+
+                            forceUpdateDialog();
+                            return;
+                        }
+                        showApiErrorResponse(null);
                     }
+                }, 3000);
 
-                    if(remoteConfigResponse.getVersion().equals(ApplicationUtilities.getCurrentAppVersionName(MainActivity.this))) redirectToMenu();
-
-                    forceUpdateDialog();
-                    return;
-                }
-                showApiErrorResponse(null);
             }
         });
         viewModel.getRemoteConfig();
     }
 
     private void forceUpdateDialog(){
-        Toast.makeText(MainActivity.this, "Please Update the App!", Toast.LENGTH_LONG).show();
+        progressBar.setVisibility(View.INVISIBLE);
+        finish();
     }
 
     private void showApiErrorResponse(RemoteConfigResponse response){
@@ -83,12 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void redirectToMenu(){
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(MainActivity.this, MenuActivity.class));
-            }
-        }, 4000);
+        startActivity(new Intent(MainActivity.this, MenuActivity.class));
     }
 
     @Override
