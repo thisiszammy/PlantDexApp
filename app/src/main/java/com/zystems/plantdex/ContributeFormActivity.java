@@ -18,6 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.zystems.plantdex.adapters.CustomMapFragment;
+import com.zystems.plantdex.models.PlantLocation;
 
 public class ContributeFormActivity extends AppCompatActivity  implements OnMapReadyCallback{
 
@@ -44,6 +45,8 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
         txtScientificName = (EditText) findViewById(R.id.txtScientificName);
         txtCommonName = (EditText) findViewById(R.id.txtCommonName);
         txtRemarks = (EditText) findViewById(R.id.txtRemarks);
+        ApplicationUtilities.setHasChanged(false);
+        ApplicationUtilities.setContributePlantLocations(null);
 
         btnSubmit = (RelativeLayout) findViewById(R.id.btnSubmit);
 
@@ -100,5 +103,30 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
 
         super.onTouchEvent(event);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(ApplicationUtilities.isHasChanged()){
+            if(googleMap != null) loadLocationsMarkers();
+        }
+    }
+
+
+    private void loadLocationsMarkers(){
+        if(googleMap != null){
+            googleMap.clear();
+
+            for(PlantLocation plantLocation : ApplicationUtilities.getContributePlantLocations()){
+                LatLng _location = new LatLng(plantLocation.getLatitude(), plantLocation.getLongitude());
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(_location));
+
+                googleMap.addMarker(new MarkerOptions()
+                        .position(_location)
+                        .title(plantLocation.getLocationName()));
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(_location));
+            }
+        }
     }
 }

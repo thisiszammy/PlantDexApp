@@ -1,14 +1,5 @@
 package com.zystems.plantdex;
 
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-
-import androidx.annotation.NonNull;
-
 import com.zystems.plantdex.models.PlantLocation;
 
 import java.util.List;
@@ -29,7 +20,7 @@ public class ApplicationUtilities {
 
     // Contribute Form and Contribute Map Functionality
     private static List<PlantLocation> contributePlantLocations;
-    private static boolean dumpData;
+    private static boolean hasChanged;
 
     public static List<PlantLocation> getContributePlantLocations() {
         return contributePlantLocations;
@@ -39,11 +30,11 @@ public class ApplicationUtilities {
         ApplicationUtilities.contributePlantLocations = contributePlantLocations;
     }
 
-    public static boolean isDumpData() {
-        return dumpData;
+    public static boolean isHasChanged() {
+        return hasChanged;
     }
 
-    public static void setDumpData(boolean dumpData) {
-        ApplicationUtilities.dumpData = dumpData;
+    public static void setHasChanged(boolean hasChanged) {
+        ApplicationUtilities.hasChanged = hasChanged;
     }
 }

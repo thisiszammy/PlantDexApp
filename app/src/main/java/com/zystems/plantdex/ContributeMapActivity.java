@@ -2,24 +2,20 @@ package com.zystems.plantdex;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.zystems.plantdex.adapters.CustomMapFragment;
 import com.zystems.plantdex.adapters.PlantLocationsAdapter;
 import com.zystems.plantdex.dialogs.AddPlantLocationDialog;
 import com.zystems.plantdex.models.PlantLocation;
@@ -80,7 +76,8 @@ public class ContributeMapActivity extends AppCompatActivity implements OnMapRea
             @Override
             public void onClick(View v) {
                 ApplicationUtilities.setContributePlantLocations(plantLocations);
-                ApplicationUtilities.setDumpData(false);
+                ApplicationUtilities.setHasChanged(true);
+                finish();
             }
         });
 
