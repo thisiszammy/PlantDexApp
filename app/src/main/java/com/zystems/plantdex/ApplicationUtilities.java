@@ -10,6 +10,8 @@ import com.zystems.plantdex.models.PlantLocation;
 import java.util.List;
 
 public class ApplicationUtilities {
+    // App's Cross Activity Request Keys
+    public static final String SEARCH_SELECTED_PLANT = "plantId";
 
     // Main Menu and Intro Page Functionality
     private static boolean closeApp;

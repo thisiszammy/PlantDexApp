@@ -34,7 +34,7 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
     private SearchPlantAdapter adapter;
     private PlantsManagementResponseViewModel viewModel;
     private RelativeLayout rootLayout, layoutLoading;
-    private TextView txtResultsActivity;
+    private TextView txtResultsCount;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
         viewModel = new ViewModelProvider(SearchActivity.this).get(PlantsManagementResponseViewModel.class);
         rootLayout = (RelativeLayout) findViewById(R.id.rootLayout);
         layoutLoading = (RelativeLayout) findViewById(R.id.layoutLoading);
-        txtResultsActivity = (TextView) findViewById(R.id.txtResultsCount);
+        txtResultsCount = (TextView) findViewById(R.id.txtResultsCount);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +98,12 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
             public void onChanged(PlantsManagementResponse plantsManagementResponse) {
                 if(plantsManagementResponse != null){
                     if(plantsManagementResponse.isSuccessful()){
-                        adapter.setPlants((plantsManagementResponse.getPlants() == null) ? new ArrayList<>() : plantsManagementResponse.getPlants());
+                        List<Plant> searchPlantResults = (plantsManagementResponse.getPlants() == null) ? new ArrayList<>() : plantsManagementResponse.getPlants();
+                        adapter.setPlants(searchPlantResults);
+                        ApplicationUtilities.setSearchPlantsByNameResults(searchPlantResults);
 
+                        String resultsText = getResources().getString(R.string.label_search_prompt) + " (" + searchPlantResults.size() + " results found)";
+                        txtResultsCount.setText(resultsText);
                     }
                     else Toast.makeText(SearchActivity.this, plantsManagementResponse.getMessage(), Toast.LENGTH_LONG).show();
                 }else Toast.makeText(SearchActivity.this, "Cannot connect to server", Toast.LENGTH_LONG).show();
@@ -113,6 +117,8 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
 
     @Override
     public void onClick(Plant plant) {
-        startActivity(new Intent(SearchActivity.this, PlantDetailsActivity.class));
+        Intent intent = new Intent(SearchActivity.this, PlantDetailsActivity.class);
+        intent.putExtra(ApplicationUtilities.SEARCH_SELECTED_PLANT, plant.getId());
+        startActivity(intent);
     }
 }

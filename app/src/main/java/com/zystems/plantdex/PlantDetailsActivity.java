@@ -3,10 +3,14 @@ package com.zystems.plantdex;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,13 +18,30 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.zystems.plantdex.adapters.CustomMapFragment;
+import com.zystems.plantdex.models.Plant;
+import com.zystems.plantdex.models.PlantLocation;
+
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlantDetailsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private ImageButton btnBack;
     private GoogleMap googleMap;
     private ScrollView scrollContainer;
+    private Plant selectedPlant;
+
+    private TextView txtScientificName, txtCommonName, txtShortDescription,
+        txtLongDescription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +52,11 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
         CustomMapFragment mapFragment = (CustomMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         scrollContainer = (ScrollView) findViewById(R.id.scrollContainer);
 
+        txtScientificName = (TextView) findViewById(R.id.txtScientificName);
+        txtCommonName = (TextView) findViewById(R.id.txtCommonName);
+        txtShortDescription = (TextView) findViewById(R.id.txtShortDescription);
+        txtLongDescription = (TextView) findViewById(R.id.txtLongDescription);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +64,9 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
             }
         });
 
+        int selectedPlantId = getIntent().getIntExtra(ApplicationUtilities.SEARCH_SELECTED_PLANT, 0);
+        if(selectedPlantId == 0) finish();
+        loadPlantData(selectedPlantId);
         mapFragment.getMapAsync(this);
 
     }
@@ -46,11 +75,31 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
 
-        LatLng sydney = new LatLng(-34, 151);
-        googleMap.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Gson gson = new Gson();
+        if(selectedPlant.getLocations() != null) {
+            JsonArray jsonArray = (new JsonParser()).parse(selectedPlant.getLocations()).getAsJsonArray();
+            List<PlantLocation> plants = new ArrayList<>();
+
+            for (JsonElement element : jsonArray) {
+                plants.add(gson.fromJson(element, PlantLocation.class));
+            }
+
+
+            if (plants.size() > 0) {
+                LatLng latestLatLng;
+                for (PlantLocation plantLocation : plants) {
+                    LatLng location = new LatLng(plantLocation.getLatitude(), plantLocation.getLongitude());
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(location)
+                            .title(plantLocation.getLocationName()));
+
+                    if (plantLocation == plants.get(plants.size() - 1))
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+
+                }
+            }
+
+        }
 
         ((CustomMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                 .setListener(new CustomMapFragment.OnTouchListener() {
@@ -77,4 +126,31 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
         super.onTouchEvent(event);
         return true;
     }
+
+    private void loadPlantData(int plantId){
+        for(Plant plant : ApplicationUtilities.getSearchPlantsByNameResults()){
+            if(plant.getId() == plantId){
+                this.selectedPlant = plant;
+                break;
+            }
+
+        }
+
+        Log.d(PlantDetailsActivity.class.getSimpleName(), plantId + "");
+
+        txtLongDescription = (TextView) findViewById(R.id.txtLongDescription);
+        txtShortDescription = (TextView) findViewById(R.id.txtShortDescription);
+        txtCommonName = (TextView) findViewById(R.id.txtCommonName);
+        txtScientificName = (TextView) findViewById(R.id.txtScientificName);
+
+        txtLongDescription.setText(selectedPlant.getDescription());
+        txtShortDescription.setText(selectedPlant.getShortDescription());
+        txtCommonName.setText(selectedPlant.getCommonName());
+
+        SpannableString spannableString = new SpannableString(selectedPlant.getScientificName());
+        spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
+        txtScientificName.setText(spannableString);
+
+    }
+
 }
