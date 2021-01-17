@@ -12,13 +12,15 @@ android {
             properties.load(rootProject.file("local.properties").newDataInputStream())
         }
 
+        buildConfigField("String", "API_KEY_PDEX", properties['plantdexapikey'])
+
         manifestPlaceholders = [API_KEY_GOOGLE: properties.getProperty("googleapikey", "")]
 
         applicationId "com.zystems.plantdex"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

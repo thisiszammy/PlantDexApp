@@ -17,16 +17,18 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.zystems.plantdex.dialogs.AlertCustomDialog;
 import com.zystems.plantdex.models.RemoteConfigResponse;
 import com.zystems.plantdex.viewmodels.RemoteConfigResponseViewModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AlertCustomDialog.ShowAlertDialogCallbacks {
 
     private RelativeLayout brandContainer;
     private RelativeLayout containerRefresh;
     private ProgressBar progressBar;
     private RemoteConfigResponseViewModel viewModel;
     private ImageButton btnRefresh;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void forceUpdateDialog(){
         progressBar.setVisibility(View.INVISIBLE);
-        finish();
+        AlertCustomDialog alertCustomDialog = new AlertCustomDialog();
+        alertCustomDialog.show(getSupportFragmentManager(), "Update Alert");
     }
 
     private void showApiErrorResponse(RemoteConfigResponse response){
@@ -108,5 +111,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if(ApplicationUtilities.isCloseApp()) finish();
+    }
+
+    @Override
+    public void onClick() {
+        finish();
     }
 }

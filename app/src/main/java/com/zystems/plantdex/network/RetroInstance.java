@@ -1,5 +1,15 @@
 package com.zystems.plantdex.network;
 
+import android.util.Log;
+
+import com.zystems.plantdex.BuildConfig;
+
+import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -17,10 +27,21 @@ public class RetroInstance {
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofitClient(){
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request newRequest  = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + BuildConfig.API_KEY_PDEX)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
+
         if(retrofit == null){
             retrofit = new Retrofit.Builder()
                     .baseUrl(ACTIVE_ENVIRONMENT)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
                     .build();
         }
         return retrofit;
