@@ -37,14 +37,48 @@
 
     </RelativeLayout>
 
+
+    <RelativeLayout
+        android:id="@+id/containerRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/brandContainer">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_refresh"
+            android:layout_centerHorizontal="true"
+            android:background="@null"
+            android:id="@+id/btnRefresh"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click the button to retry connection to the server"
+            android:textColor="@color/colorAccent"
+            android:fontFamily="@font/noto_sans_bold"
+            android:textStyle="bold"
+            android:layout_below="@id/btnRefresh"
+            android:layout_centerHorizontal="true"
+            android:width="200dp"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+
     <ProgressBar
+        android:layout_marginTop="3dp"
         android:id="@+id/progressBar"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/brandContainer"
-    />
+        />
 
 
 </RelativeLayout>

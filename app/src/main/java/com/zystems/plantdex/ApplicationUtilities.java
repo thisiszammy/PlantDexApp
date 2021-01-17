@@ -1,5 +1,9 @@
 package com.zystems.plantdex;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
 import com.zystems.plantdex.models.PlantLocation;
 
 import java.util.List;
@@ -37,4 +41,16 @@ public class ApplicationUtilities {
     public static void setHasChanged(boolean hasChanged) {
         ApplicationUtilities.hasChanged = hasChanged;
     }
+
+    // Android Package Utilities
+    public static String getCurrentAppVersionName(Context ctx){
+        try {
+            PackageInfo pInfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0);
+            return pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

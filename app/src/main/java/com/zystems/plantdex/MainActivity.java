@@ -1,6 +1,9 @@
 package com.zystems.plantdex;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +15,14 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.zystems.plantdex.models.RemoteConfigResponse;
+import com.zystems.plantdex.viewmodels.RemoteConfigResponseViewModel;
+
 public class MainActivity extends AppCompatActivity {
 
     private RelativeLayout brandContainer;
     private ProgressBar progressBar;
+    private RemoteConfigResponseViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,36 +35,58 @@ public class MainActivity extends AppCompatActivity {
 
         brandContainer.setAnimation(animation);
         ApplicationUtilities.setCloseApp(false);
-        /*
-            TODO 1) : Get remote config
-            TODO 2) : Show Update dialog if version mismatch, other wise proceed to next page
-         */
+        viewModel = new ViewModelProvider(MainActivity.this).get(RemoteConfigResponseViewModel.class);
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 progressBar.setVisibility(View.VISIBLE);
+                getRemoteConfig();
             }
         },2000);
 
+
+    }
+
+    private void getRemoteConfig(){
+        viewModel.getRemoteConfigObserver().observe(MainActivity.this, new Observer<RemoteConfigResponse>() {
+            @Override
+            public void onChanged(RemoteConfigResponse remoteConfigResponse) {
+                if(remoteConfigResponse != null) {
+                    if(!remoteConfigResponse.isSuccessful){
+                        showApiErrorResponse(remoteConfigResponse);
+                        return;
+                    }
+
+                    if(remoteConfigResponse.version.equals(ApplicationUtilities.getCurrentAppVersionName(MainActivity.this))) redirectToMenu();
+
+                    forceUpdateDialog();
+                }
+                showApiErrorResponse(null);
+            }
+        });
+        viewModel.getRemoteConfig();
+    }
+
+    private void forceUpdateDialog(){
+        Toast.makeText(MainActivity.this, "Please Update the App!", Toast.LENGTH_LONG).show();
+    }
+
+    private void showApiErrorResponse(RemoteConfigResponse response){
+        Toast.makeText(MainActivity.this, (response == null) ? "Cannot connect to the server!" : response.message, Toast.LENGTH_LONG).show();
+    }
+
+    private void redirectToMenu(){
+        /*
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 redirectToMenu();
             }
         }, 4000);
+         */
 
-    }
-
-    private void checkVersion(){
-
-    }
-
-    private void forceUpdateDialog(){
-
-    }
-
-    private void redirectToMenu(){
         startActivity(new Intent(MainActivity.this, MenuActivity.class));
     }
 
