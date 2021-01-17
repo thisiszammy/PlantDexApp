@@ -64,7 +64,7 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        ApplicationUtilities.closeApp = true;
+        ApplicationUtilities.setCloseApp(true);
         finish();
     }
 }

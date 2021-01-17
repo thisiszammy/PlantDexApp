@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         brandContainer.setAnimation(animation);
-        ApplicationUtilities.closeApp = false;
+        ApplicationUtilities.setCloseApp(false);
         /*
             TODO 1) : Get remote config
             TODO 2) : Show Update dialog if version mismatch, other wise proceed to next page
@@ -64,6 +64,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(ApplicationUtilities.closeApp) finish();
+        if(ApplicationUtilities.isCloseApp()) finish();
     }
 }
