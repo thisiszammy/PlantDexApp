@@ -70,4 +70,10 @@
     <string name="hint_common_name">Enter Common Name...</string>
     <string name="hint_remarks">Enter Remarks...</string>
 
+    <string name="label_contribute_success_desc1">You have successfully submitted a contribution! The plant data will be checked by the administrators and changes will
+        be made to the database accordingly. Thank you for contributing!</string>
+
+    <string name="label_contribute_success_desc2">You have successfully submitted a contribution! The plant data will be checked by the administrators and changes will
+        be made to the database accordingly. Thank you for contributing!</string>
+
 </resources>

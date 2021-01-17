@@ -1,5 +1,6 @@
 package com.zystems.plantdex.network;
 
+import com.zystems.plantdex.models.ContributionSubmission;
 import com.zystems.plantdex.models.ContributionsManagementResponse;
 import com.zystems.plantdex.models.PlantsManagementResponse;
 import com.zystems.plantdex.models.RemoteConfigResponse;
@@ -24,7 +25,9 @@ public interface APIService {
     @GET("plants/search/name")
     Call<PlantsManagementResponse> getPlantByQueryName(@Query("name") String query);
 
+
     // Contributions Management Endpoints
-    @POST("contribute/submit")
-    Call<ContributionsManagementResponse> postContributionSubmission(@Body RequestBody body);
+    @Headers("Content-Type:application/json")
+    @POST("plants/contribute/submit")
+    Call<ContributionsManagementResponse> postContributionSubmission(@Body ContributionSubmission contributionSubmission);
 }

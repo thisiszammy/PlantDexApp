@@ -1,7 +1,10 @@
 package com.zystems.plantdex;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Application;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,7 +22,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.zystems.plantdex.adapters.CustomMapFragment;
+import com.zystems.plantdex.models.ContributionsManagementResponse;
+import com.zystems.plantdex.models.Plant;
 import com.zystems.plantdex.models.PlantLocation;
+import com.zystems.plantdex.viewmodels.ContributionsManagementResponseViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContributeFormActivity extends AppCompatActivity  implements OnMapReadyCallback{
 
@@ -34,6 +44,9 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
     private GoogleMap googleMap;
     private ScrollView scrollContainer;
 
+    private RelativeLayout rootLayout, layoutLoading;
+    private ContributionsManagementResponseViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +58,11 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
         txtScientificName = (EditText) findViewById(R.id.txtScientificName);
         txtCommonName = (EditText) findViewById(R.id.txtCommonName);
         txtRemarks = (EditText) findViewById(R.id.txtRemarks);
+        rootLayout = (RelativeLayout) findViewById(R.id.rootLayout);
+        layoutLoading = (RelativeLayout) findViewById(R.id.layoutLoading);
         ApplicationUtilities.setHasChanged(false);
         ApplicationUtilities.setContributePlantLocations(null);
+        viewModel = new ViewModelProvider(this).get(ContributionsManagementResponseViewModel.class);
 
         btnSubmit = (RelativeLayout) findViewById(R.id.btnSubmit);
 
@@ -64,6 +80,13 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ContributeFormActivity.this, ContributeMapActivity.class));
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveContributionForm();
             }
         });
 
@@ -128,5 +151,51 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(_location));
             }
         }
+    }
+
+    private void saveContributionForm(){
+
+        rootLayout.setEnabled(false);
+        layoutLoading.setVisibility(View.VISIBLE);
+
+        String remarks = txtRemarks.getText().toString().trim();
+        String scientificName = txtScientificName.getText().toString().trim();
+        String commonName = txtCommonName.getText().toString().trim();
+
+        if(remarks.isEmpty()){
+            txtRemarks.setError("Field is required");
+            txtRemarks.requestFocus();
+            return;
+        }
+
+        if(scientificName.isEmpty()){
+            txtScientificName.setError("Field is required");
+            txtScientificName.requestFocus();
+            return;
+        }
+
+        if(commonName.isEmpty()){
+            txtCommonName.setError("Field is required");
+            txtCommonName.requestFocus();
+            return;
+        }
+
+
+        viewModel.getContributionsManagementResponseObserver().observe(ContributeFormActivity.this, new Observer<ContributionsManagementResponse>() {
+            @Override
+            public void onChanged(ContributionsManagementResponse contributionsManagementResponse) {
+                if(contributionsManagementResponse != null){
+                    if(contributionsManagementResponse.isSuccessful()){
+                        startActivity(new Intent(ContributeFormActivity.this, ContributionSuccessActivity.class));
+                    }
+                    else Toast.makeText(ContributeFormActivity.this, contributionsManagementResponse.getMessage(), Toast.LENGTH_LONG).show();
+                }else Toast.makeText(ContributeFormActivity.this, "Cannot connect to server", Toast.LENGTH_LONG).show();
+
+                rootLayout.setEnabled(true);
+                layoutLoading.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        viewModel.postContributionSubmission(scientificName, commonName, remarks, ApplicationUtilities.getContributePlantLocations());
     }
 }

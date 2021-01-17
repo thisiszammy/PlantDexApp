@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
+import com.zystems.plantdex.models.ContributionSubmission;
 import com.zystems.plantdex.models.ContributionsManagementResponse;
 import com.zystems.plantdex.models.PlantLocation;
 import com.zystems.plantdex.models.PlantsManagementResponse;
@@ -36,15 +37,9 @@ public class ContributionsManagementResponseViewModel extends ViewModel {
     public void postContributionSubmission(String scientificName, String commonName, String remarks, List<PlantLocation> locations){
         APIService apiService = RetroInstance.getRetrofitClient().create(APIService.class);
 
-        RequestBody requestBody = new MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("commonName", commonName)
-                .addFormDataPart("scientificName", scientificName)
-                .addFormDataPart("remarks", remarks)
-                .addFormDataPart("locations", (new Gson()).toJson(locations))
-                .build();
+        Call<ContributionsManagementResponse> contributionsManagementResponseCall = apiService.postContributionSubmission(
+                new ContributionSubmission(0, scientificName,commonName, remarks, (new Gson()).toJson(locations)));
 
-        Call<ContributionsManagementResponse> contributionsManagementResponseCall = apiService.postContributionSubmission(requestBody);
         contributionsManagementResponseCall.enqueue(new Callback<ContributionsManagementResponse>() {
             @Override
             public void onResponse(Call<ContributionsManagementResponse> call, Response<ContributionsManagementResponse> response) {
