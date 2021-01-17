@@ -2,40 +2,40 @@ package com.zystems.plantdex.models;
 
 public class PlantLocation extends AuditableEntity {
 
-    public String Latitude;
-    public String Longitude;
-    public double Intensity;
+    public double Latitude, Longitude;
+    public String LocationName;
 
     public PlantLocation() {
     }
 
-    public PlantLocation(String latitude, String longitude, double intensity) {
+
+    public PlantLocation(double latitude, double longitude, String locationName) {
         Latitude = latitude;
         Longitude = longitude;
-        Intensity = intensity;
+        LocationName = locationName;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return Latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         Latitude = latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return Longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         Longitude = longitude;
     }
 
-    public double getIntensity() {
-        return Intensity;
+    public String getLocationName() {
+        return LocationName;
     }
 
-    public void setIntensity(double intensity) {
-        Intensity = intensity;
+    public void setLocationName(String locationName) {
+        LocationName = locationName;
     }
 }

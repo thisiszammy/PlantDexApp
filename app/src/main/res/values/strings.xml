@@ -1,3 +1,71 @@
 <resources>
     <string name="app_name">PlantDex</string>
+
+    <string name="app_description1">PlantDex is a Lorem ipsum dolor sit amet, consecte
+        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
+        a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
+        iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
+        unt in culpa qui officia deserunt mollit anim id est laborum. </string>
+
+    <string name="app_description2">PlantDex is a Lorem ipsum dolor sit amet, consecte
+        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
+        a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
+        iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
+        unt in culpa qui officia deserunt mollit anim id est laborum. </string>
+
+    <!-- navigation drawer -->
+    <string name="label_features">Features</string>
+    <string name="label_cap_classify">Capture &amp; Classify</string>
+    <string name="label_search">Search</string>
+    <string name="label_contribute">Contribute</string>
+
+    <string name="label_account_details">Account Details</string>
+    <string name="label_profile">Profile</string>
+    <string name="label_login">Login</string>
+    <string name="label_logout">Logout</string>
+
+    <string name="label_support">Customer Support</string>
+    <string name="label_report">Report Issue</string>
+    <string name="label_rate">Rate App</string>
+
+    <string name="nav_drawer_open">open navigation drawer</string>
+    <string name="nav_drawer_close">close navigation drawer</string>
+
+
+    <!-- Login -->
+    <string name="label_username">Username</string>
+    <string name="label_password">Password</string>
+
+    <string name="hint_username">Enter Username...</string>
+    <string name="hint_password">Enter Password...</string>
+
+    <string name="action_login">Login</string>
+    <string name="label_action_register">Don\'t have an account?</string>
+    <string name="label_action">Sign Up!</string>
+
+
+    <!-- Plant Details -->
+    <string name="label_plant_details">Plant Details</string>
+    <string name="label_hotspots">Plant Hotspots</string>
+
+    <string name="lorem_ipsum">
+        PlantDex is a Lorem ipsum dolor sit amet, consecte
+        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
+        a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
+        iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
+        unt in culpa qui officia deserunt mollit anim id est laborum.
+    </string>
+
+    <!-- Contribution Form -->
+    <string name="label_scientific_name">Scientific Name</string>
+    <string name="label_common_name">Common Name</string>
+    <string name="label_remarks">Remarks</string>
+
+    <string name="hint_scientific_name">Enter Scientific Name...</string>
+    <string name="hint_common_name">Enter Common Name...</string>
+    <string name="hint_remarks">Enter Remarks...</string>
+
 </resources>
