@@ -2,6 +2,7 @@ package com.zystems.plantdex.network;
 
 import android.util.Log;
 
+import com.google.gson.GsonBuilder;
 import com.zystems.plantdex.BuildConfig;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class RetroInstance {
         if(retrofit == null){
             retrofit = new Retrofit.Builder()
                     .baseUrl(ACTIVE_ENVIRONMENT)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()))
                     .client(client)
                     .build();
         }

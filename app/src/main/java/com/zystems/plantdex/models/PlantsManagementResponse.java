@@ -5,10 +5,10 @@ import com.zystems.plantdex.models.Plant;
 import java.util.List;
 
 public class PlantsManagementResponse {
-    public String message;
-    public boolean isSuccessful;
-    public List<String> errors;
-    public List<Plant> plants;
+    private String message;
+    private boolean isSuccessful;
+    private List<String> errors;
+    private List<Plant> plants;
 
     public PlantsManagementResponse() {
     }

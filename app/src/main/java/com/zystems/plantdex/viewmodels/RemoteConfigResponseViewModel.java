@@ -30,7 +30,7 @@ public class RemoteConfigResponseViewModel extends ViewModel {
         remoteConfigResponseMutableLiveData = new MutableLiveData<>();
     }
 
-    public MutableLiveData<RemoteConfigResponse> getRemoteConfigObserver(){
+    public MutableLiveData<RemoteConfigResponse> getRemoteConfigResponseObserver(){
         return remoteConfigResponseMutableLiveData;
     }
 
@@ -40,6 +40,7 @@ public class RemoteConfigResponseViewModel extends ViewModel {
         remoteConfigResponseCall.enqueue(new Callback<RemoteConfigResponse>() {
             @Override
             public void onResponse(Call<RemoteConfigResponse> call, Response<RemoteConfigResponse> response) {
+                Log.d(RemoteConfigResponseViewModel.class.getSimpleName(), response.code() + "");
                 if(response.code() == 200) {
                     remoteConfigResponseMutableLiveData.postValue(response.body());
                     Log.d(RemoteConfigResponseViewModel.class.getSimpleName(), (new Gson()).toJson(response.body())+ " - ");

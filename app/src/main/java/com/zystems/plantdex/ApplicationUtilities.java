@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import com.zystems.plantdex.models.Plant;
 import com.zystems.plantdex.models.PlantLocation;
 
 import java.util.List;
@@ -53,4 +54,14 @@ public class ApplicationUtilities {
         return null;
     }
 
+    // Search Results Data
+    private static List<Plant> searchPlantsByNameResults;
+
+    public static List<Plant> getSearchPlantsByNameResults() {
+        return searchPlantsByNameResults;
+    }
+
+    public static void setSearchPlantsByNameResults(List<Plant> searchPlantsByNameResults) {
+        ApplicationUtilities.searchPlantsByNameResults = searchPlantsByNameResults;
+    }
 }
