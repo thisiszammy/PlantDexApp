@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import com.zystems.plantdex.models.ApplicationUser;
 import com.zystems.plantdex.models.Plant;
 import com.zystems.plantdex.models.PlantLocation;
 
@@ -12,6 +13,16 @@ import java.util.List;
 public class ApplicationUtilities {
     // App's Cross Activity Request Keys
     public static final String SEARCH_SELECTED_PLANT = "plantId";
+    private static ApplicationUser loggedUser;
+
+
+    public static ApplicationUser getLoggedUser() {
+        return loggedUser;
+    }
+
+    public static void setLoggedUser(ApplicationUser loggedUser) {
+        ApplicationUtilities.loggedUser = loggedUser;
+    }
 
     // Main Menu and Intro Page Functionality
     private static boolean closeApp;

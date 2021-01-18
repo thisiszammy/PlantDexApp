@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rootLayout"
     tools:context=".RegisterActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -25,6 +26,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
+                    android:paddingTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_carbon_user_avatar_filled_alt"
@@ -319,6 +321,23 @@
 
 
         </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/layoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorLoadingBg"
+        >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            />
 
     </RelativeLayout>
 
