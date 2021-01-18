@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CaptureActivity">
+    tools:context=".RegisterActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -24,27 +24,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageButton
-                    android:background="@color/colorPrimaryDim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_back"
-                    android:id="@+id/btnBack"
-                    />
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:text="@string/label_cap_classify"
-                    android:textSize="24sp"
-                    android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/label_search"
+                    android:textSize="28dp"
                     android:fontFamily="@font/noto_sans_bold"
-                    android:layout_toRightOf="@id/btnBack"
-                    android:layout_toEndOf="@id/btnBack"
+                    android:textColor="@color/colorAccent"
                     />
 
                 <ImageButton
@@ -68,33 +59,5 @@
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.camera.view.PreviewView
-        android:id="@+id/viewFinder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/containerButtons"
-        android:layout_below="@id/appbar"
-        />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/containerButtons"
-        android:padding="10dp"
-        android:background="@color/colorWhite">
-
-
-        <ImageButton
-            android:id="@+id/btnCapture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/ic_action_camera_snap"/>
-
-
-    </RelativeLayout>
 
 </RelativeLayout>

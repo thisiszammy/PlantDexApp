@@ -40,6 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorAccent"
                     android:layout_marginStart="20dp"
                     android:text="@string/label_plant_details"
                     android:textSize="28dp"
