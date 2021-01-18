@@ -23,10 +23,11 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.zystems.plantdex.dialogs.AddPlantLocationDialog;
 import com.zystems.plantdex.dialogs.RateAppDialog;
+import com.zystems.plantdex.dialogs.ReportIssueDialog;
 import com.zystems.plantdex.models.CustomerSupportManagementResponse;
 import com.zystems.plantdex.viewmodels.CustomerSupportManagementResponseViewModel;
 
-public class MenuActivity extends AppCompatActivity implements RateAppDialog.RateAppDialogCallbacks {
+public class MenuActivity extends AppCompatActivity implements RateAppDialog.RateAppDialogCallbacks, ReportIssueDialog.ReportIssueDialogCallbacks {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -81,6 +82,10 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
                         if(ApplicationUtilities.getLoggedUser() != null) showRateAppDialog();
                         else Toast.makeText(MenuActivity.this, "You need to be logged in to rate", Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.nav_drawer_report:
+                        if(ApplicationUtilities.getLoggedUser() != null) showIssueReportDialog();
+                        else Toast.makeText(MenuActivity.this, "You need to be logged in to rate", Toast.LENGTH_SHORT).show();
+                        break;
                 }
 
 
@@ -93,7 +98,7 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
                     @Override
                     public void onChanged(CustomerSupportManagementResponse customerSupportManagementResponse) {
                         if(customerSupportManagementResponse != null){
-                            if(customerSupportManagementResponse.isSuccessful()) Toast.makeText(MenuActivity.this, "Rating Successfully Submitted!", Toast.LENGTH_LONG).show();
+                            if(customerSupportManagementResponse.isSuccessful()) Toast.makeText(MenuActivity.this, customerSupportManagementResponse.getMessage()+ "!", Toast.LENGTH_LONG).show();
                             else Toast.makeText(MenuActivity.this, customerSupportManagementResponse.getMessage(), Toast.LENGTH_LONG).show();
                         }else Toast.makeText(MenuActivity.this, "Cannot connect to server", Toast.LENGTH_LONG).show();
                         rootLayout.setEnabled(true);
@@ -143,6 +148,11 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
         rateAppDialog.show(getSupportFragmentManager(), "Rate App");
     }
 
+    private void showIssueReportDialog(){
+        ReportIssueDialog dialog = new ReportIssueDialog();
+        dialog.show(getSupportFragmentManager(), "Report Issue");
+    }
+
     // Rate App Dialog Callback
     @Override
     public void onClick(int rating) {
@@ -150,4 +160,16 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
         rootLayout.setEnabled(false);
         viewModel.postAppRating(ApplicationUtilities.getLoggedUser(),rating);
     }
+
+    // Issue Report Dialog Callback
+
+    @Override
+    public void onClick(String remarks) {
+        layoutLoading.setVisibility(View.VISIBLE);
+        rootLayout.setEnabled(false);
+        viewModel.postIssuedComplaint(ApplicationUtilities.getLoggedUser(),
+                ApplicationUtilities.getCurrentAppVersionName(MenuActivity.this),
+                android.os.Build.VERSION.RELEASE, remarks);
+    }
+
 }

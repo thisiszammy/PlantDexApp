@@ -8,6 +8,7 @@ import com.zystems.plantdex.models.CustomerSupportManagementResponse;
 import com.zystems.plantdex.models.LoginModel;
 import com.zystems.plantdex.models.PlantsManagementResponse;
 import com.zystems.plantdex.models.RemoteConfigResponse;
+import com.zystems.plantdex.models.ReportedComplaintSubmission;
 import com.zystems.plantdex.models.UsersManagementResponse;
 
 import retrofit2.Call;
@@ -48,4 +49,8 @@ public interface APIService {
     @Headers("Content-Type:application/json")
     @POST("customer-support/rating/submit")
     Call<CustomerSupportManagementResponse> postAppRating(@Body AppRatingSubmission appRatingSubmission);
+
+    @Headers("Content-Type:application/json")
+    @POST("customer-support/complaints/file")
+    Call<CustomerSupportManagementResponse> postComplaints(@Body ReportedComplaintSubmission reportedComplaintSubmission);
 }

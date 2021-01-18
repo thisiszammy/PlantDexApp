@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAlertMessage"
+        android:text="@string/lorem_ipsum_rate"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/noto_sans_bold"
+        android:textSize="12sp"
+        />
+
+    <EditText
+        android:layout_below="@id/txtAlertMessage"
+        android:id="@+id/txtRemarks"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Enter Remarks..."
+        android:gravity="left|top"
+        android:textColorHint="@color/colorAccentDim"
+        android:inputType="textMultiLine"
+        android:background="@drawable/custom_input"
+        android:padding="10dp"
+        android:layout_marginVertical="15dp"
+
+        />
+
+</RelativeLayout>

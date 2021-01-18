@@ -56,7 +56,7 @@ public class RateAppDialog extends AppCompatDialogFragment {
                         dismiss();
                     }
                 })
-                .setIcon(getResources().getDrawable(R.drawable.ic_alert));
+                .setIcon(getResources().getDrawable(R.drawable.ic_rate));
 
         alertDialog = builder.create();
 
