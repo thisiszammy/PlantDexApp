@@ -1,11 +1,14 @@
 package com.zystems.plantdex.network;
 
+import com.zystems.plantdex.models.AppRatingSubmission;
 import com.zystems.plantdex.models.ApplicationUser;
 import com.zystems.plantdex.models.ContributionSubmission;
 import com.zystems.plantdex.models.ContributionsManagementResponse;
+import com.zystems.plantdex.models.CustomerSupportManagementResponse;
 import com.zystems.plantdex.models.LoginModel;
 import com.zystems.plantdex.models.PlantsManagementResponse;
 import com.zystems.plantdex.models.RemoteConfigResponse;
+import com.zystems.plantdex.models.ReportedComplaintSubmission;
 import com.zystems.plantdex.models.UsersManagementResponse;
 
 import retrofit2.Call;
@@ -41,4 +44,13 @@ public interface APIService {
     @Headers("Content-Type:application/json")
     @POST("auth/login")
     Call<UsersManagementResponse> postLoginForm(@Body LoginModel loginModel);
+
+    // Customer Support Endpoints
+    @Headers("Content-Type:application/json")
+    @POST("customer-support/rating/submit")
+    Call<CustomerSupportManagementResponse> postAppRating(@Body AppRatingSubmission appRatingSubmission);
+
+    @Headers("Content-Type:application/json")
+    @POST("customer-support/complaints/file")
+    Call<CustomerSupportManagementResponse> postComplaints(@Body ReportedComplaintSubmission reportedComplaintSubmission);
 }
