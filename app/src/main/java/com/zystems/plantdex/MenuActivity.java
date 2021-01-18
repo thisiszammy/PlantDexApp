@@ -59,6 +59,11 @@ public class MenuActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_drawer_contribute:
                         startActivity(new Intent(MenuActivity.this , ContributeActivity.class));
+                        break;
+                    case R.id.nav_drawer_logout:
+                        initAnonymousUser();
+                        Toast.makeText(MenuActivity.this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
+                        break;
                 }
 
 
@@ -66,6 +71,11 @@ public class MenuActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        navDrawerItems = navigationView.getMenu();
+        navDrawerItemProfile = navDrawerItems.findItem(R.id.nav_drawer_profile);
+        navDrawerItemLogin = navDrawerItems.findItem(R.id.nav_drawer_login);
+        navDrawerItemLogOut = navDrawerItems.findItem(R.id.nav_drawer_logout);
 
         initAnonymousUser();
     }
@@ -76,14 +86,25 @@ public class MenuActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(ApplicationUtilities.getLoggedUser() != null) initLoggedUser();
+        else initAnonymousUser();
+    }
 
     public void initAnonymousUser(){
-        navDrawerItems = navigationView.getMenu();
-        navDrawerItemProfile = navDrawerItems.findItem(R.id.nav_drawer_profile);
-        navDrawerItemLogin = navDrawerItems.findItem(R.id.nav_drawer_login);
-        navDrawerItemLogOut = navDrawerItems.findItem(R.id.nav_drawer_logout);
+        ApplicationUtilities.setLoggedUser(null);
 
+        navDrawerItemLogin.setVisible(true);
         navDrawerItemLogOut.setVisible(false);
         navDrawerItemProfile.setVisible(false);
+    }
+
+    public void initLoggedUser(){
+
+        navDrawerItemLogin.setVisible(false);
+        navDrawerItemLogOut.setVisible(true);
+        navDrawerItemProfile.setVisible(true);
     }
 }

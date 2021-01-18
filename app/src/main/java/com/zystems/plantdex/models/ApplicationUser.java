@@ -3,100 +3,100 @@ package com.zystems.plantdex.models;
 import java.util.Date;
 
 public class ApplicationUser {
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-    private String accountType;
-    private String createdBy;
-    private boolean isAdminApproved;
-    private Date createdOn;
+    private String FirstName;
+    private String MiddleName;
+    private String LastName;
+    private String Email;
+    private String PhoneNumber;
+    private String AccountType;
+    private String Password;
+    private String ConfirmPassword;
+    private String Username;
 
     public ApplicationUser() {
     }
 
-    public ApplicationUser(String firstName, String middleName, String lastName, String email, String phoneNumber, String accountType, String createdBy, boolean isAdminApproved, Date createdOn) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.accountType = accountType;
-        this.createdBy = createdBy;
-        this.isAdminApproved = isAdminApproved;
-        this.createdOn = createdOn;
+    public ApplicationUser(String firstName, String middleName, String lastName, String email, String phoneNumber, String accountType, String password, String confirmPassword, String username) {
+        FirstName = firstName;
+        MiddleName = middleName;
+        LastName = lastName;
+        Email = email;
+        PhoneNumber = phoneNumber;
+        AccountType = accountType;
+        Password = password;
+        ConfirmPassword = confirmPassword;
+        Username = username;
     }
 
     public String getFirstName() {
-        return firstName;
+        return FirstName;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        FirstName = firstName;
     }
 
     public String getMiddleName() {
-        return middleName;
+        return MiddleName;
     }
 
     public void setMiddleName(String middleName) {
-        this.middleName = middleName;
+        MiddleName = middleName;
     }
 
     public String getLastName() {
-        return lastName;
+        return LastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        LastName = lastName;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return PhoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        PhoneNumber = phoneNumber;
     }
 
     public String getAccountType() {
-        return accountType;
+        return AccountType;
     }
 
     public void setAccountType(String accountType) {
-        this.accountType = accountType;
+        AccountType = accountType;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getPassword() {
+        return Password;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setPassword(String password) {
+        Password = password;
     }
 
-    public boolean isAdminApproved() {
-        return isAdminApproved;
+    public String getConfirmPassword() {
+        return ConfirmPassword;
     }
 
-    public void setAdminApproved(boolean adminApproved) {
-        isAdminApproved = adminApproved;
+    public void setConfirmPassword(String confirmPassword) {
+        ConfirmPassword = confirmPassword;
     }
 
-    public Date getCreatedOn() {
-        return createdOn;
+    public String getUsername() {
+        return Username;
     }
 
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
+    public void setUsername(String username) {
+        Username = username;
     }
 }

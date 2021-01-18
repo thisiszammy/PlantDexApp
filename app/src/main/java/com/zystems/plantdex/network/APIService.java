@@ -3,6 +3,7 @@ package com.zystems.plantdex.network;
 import com.zystems.plantdex.models.ApplicationUser;
 import com.zystems.plantdex.models.ContributionSubmission;
 import com.zystems.plantdex.models.ContributionsManagementResponse;
+import com.zystems.plantdex.models.LoginModel;
 import com.zystems.plantdex.models.PlantsManagementResponse;
 import com.zystems.plantdex.models.RemoteConfigResponse;
 import com.zystems.plantdex.models.UsersManagementResponse;
@@ -36,4 +37,8 @@ public interface APIService {
     @Headers("Content-Type:application/json")
     @POST("auth/register")
     Call<UsersManagementResponse> postRegistrationForm(@Body ApplicationUser applicationUser);
+
+    @Headers("Content-Type:application/json")
+    @POST("auth/login")
+    Call<UsersManagementResponse> postLoginForm(@Body LoginModel loginModel);
 }

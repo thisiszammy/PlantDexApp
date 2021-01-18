@@ -13,14 +13,14 @@ import java.util.List;
 public class ApplicationUtilities {
     // App's Cross Activity Request Keys
     public static final String SEARCH_SELECTED_PLANT = "plantId";
-    private static ApplicationUser loggedUser;
+    private static String loggedUser;
 
 
-    public static ApplicationUser getLoggedUser() {
+    public static String getLoggedUser() {
         return loggedUser;
     }
 
-    public static void setLoggedUser(ApplicationUser loggedUser) {
+    public static void setLoggedUser(String loggedUser) {
         ApplicationUtilities.loggedUser = loggedUser;
     }
 
