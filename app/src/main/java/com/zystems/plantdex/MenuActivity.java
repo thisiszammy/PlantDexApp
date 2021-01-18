@@ -6,19 +6,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.zystems.plantdex.dialogs.AddPlantLocationDialog;
+import com.zystems.plantdex.dialogs.RateAppDialog;
+import com.zystems.plantdex.models.CustomerSupportManagementResponse;
+import com.zystems.plantdex.viewmodels.CustomerSupportManagementResponseViewModel;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements RateAppDialog.RateAppDialogCallbacks {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
@@ -26,6 +34,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private Menu navDrawerItems;
     private MenuItem navDrawerItemProfile, navDrawerItemLogin, navDrawerItemLogOut;
+    private CustomerSupportManagementResponseViewModel viewModel;
+    private RelativeLayout rootLayout, layoutLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +44,10 @@ public class MenuActivity extends AppCompatActivity {
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         navigationView = (NavigationView) findViewById(R.id.navigationDrawer);
+        rootLayout = (RelativeLayout) findViewById(R.id.rootLayout);
+        layoutLoading = (RelativeLayout) findViewById(R.id.layoutLoading);
         toolbar = findViewById(R.id.toolBar);
+        viewModel = new ViewModelProvider(this).get(CustomerSupportManagementResponseViewModel.class);
 
         setSupportActionBar(toolbar);
 
@@ -64,6 +77,10 @@ public class MenuActivity extends AppCompatActivity {
                         initAnonymousUser();
                         Toast.makeText(MenuActivity.this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.nav_drawer_rate:
+                        if(ApplicationUtilities.getLoggedUser() != null) showRateAppDialog();
+                        else Toast.makeText(MenuActivity.this, "You need to be logged in to rate", Toast.LENGTH_SHORT).show();
+                        break;
                 }
 
 
@@ -72,12 +89,25 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        viewModel.getCustomerSupportManagementResponseObserver().observe(this, new Observer<CustomerSupportManagementResponse>() {
+                    @Override
+                    public void onChanged(CustomerSupportManagementResponse customerSupportManagementResponse) {
+                        if(customerSupportManagementResponse != null){
+                            if(customerSupportManagementResponse.isSuccessful()) Toast.makeText(MenuActivity.this, "Rating Successfully Submitted!", Toast.LENGTH_LONG).show();
+                            else Toast.makeText(MenuActivity.this, customerSupportManagementResponse.getMessage(), Toast.LENGTH_LONG).show();
+                        }else Toast.makeText(MenuActivity.this, "Cannot connect to server", Toast.LENGTH_LONG).show();
+                        rootLayout.setEnabled(true);
+                        layoutLoading.setVisibility(View.INVISIBLE);
+                    }
+                });
+
         navDrawerItems = navigationView.getMenu();
         navDrawerItemProfile = navDrawerItems.findItem(R.id.nav_drawer_profile);
         navDrawerItemLogin = navDrawerItems.findItem(R.id.nav_drawer_login);
         navDrawerItemLogOut = navDrawerItems.findItem(R.id.nav_drawer_logout);
 
         initAnonymousUser();
+
     }
 
     @Override
@@ -93,7 +123,7 @@ public class MenuActivity extends AppCompatActivity {
         else initAnonymousUser();
     }
 
-    public void initAnonymousUser(){
+    private void initAnonymousUser(){
         ApplicationUtilities.setLoggedUser(null);
 
         navDrawerItemLogin.setVisible(true);
@@ -101,10 +131,23 @@ public class MenuActivity extends AppCompatActivity {
         navDrawerItemProfile.setVisible(false);
     }
 
-    public void initLoggedUser(){
+    private void initLoggedUser(){
 
         navDrawerItemLogin.setVisible(false);
         navDrawerItemLogOut.setVisible(true);
         navDrawerItemProfile.setVisible(true);
+    }
+
+    private void showRateAppDialog(){
+        RateAppDialog rateAppDialog = new RateAppDialog();
+        rateAppDialog.show(getSupportFragmentManager(), "Rate App");
+    }
+
+    // Rate App Dialog Callback
+    @Override
+    public void onClick(int rating) {
+        layoutLoading.setVisibility(View.VISIBLE);
+        rootLayout.setEnabled(false);
+        viewModel.postAppRating(ApplicationUtilities.getLoggedUser(),rating);
     }
 }

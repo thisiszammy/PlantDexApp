@@ -61,6 +61,12 @@
         unt in culpa qui officia deserunt mollit anim id est laborum.
     </string>
 
+    <string name="lorem_ipsum_rate">
+        Please rate X out of Y how much this app helped you!  PlantDex is a Lorem ipsum dolor sit amet, consecte
+        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
+        a. Ut enim ad minim veniam, quis nostrud ex
+    </string>
+
     <!-- Contribution Form -->
     <string name="label_scientific_name">Scientific Name</string>
     <string name="label_common_name">Common Name</string>
