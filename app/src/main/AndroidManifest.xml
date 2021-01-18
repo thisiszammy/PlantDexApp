@@ -21,7 +21,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="LockedOrientationActivity">
-        <activity android:name=".ContributionSuccessActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".ContributionSuccessActivity" />
         <activity
             android:name=".ContributeMapActivity"
             android:screenOrientation="portrait"

@@ -42,6 +42,7 @@
                     android:layout_marginStart="10dp"
                     android:text="@string/label_contribute"
                     android:textSize="24sp"
+                    android:textColor="@color/colorAccent"
                     android:fontFamily="@font/noto_sans_bold"
                     android:layout_toRightOf="@id/btnBack"
                     android:layout_toEndOf="@id/btnBack"

@@ -9,7 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -20,6 +23,9 @@ public class MenuActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+
+    private Menu navDrawerItems;
+    private MenuItem navDrawerItemProfile, navDrawerItemLogin, navDrawerItemLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,11 @@ public class MenuActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_drawer_contribute:
                         startActivity(new Intent(MenuActivity.this , ContributeActivity.class));
+                        break;
+                    case R.id.nav_drawer_logout:
+                        initAnonymousUser();
+                        Toast.makeText(MenuActivity.this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
+                        break;
                 }
 
 
@@ -60,11 +71,40 @@ public class MenuActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        navDrawerItems = navigationView.getMenu();
+        navDrawerItemProfile = navDrawerItems.findItem(R.id.nav_drawer_profile);
+        navDrawerItemLogin = navDrawerItems.findItem(R.id.nav_drawer_login);
+        navDrawerItemLogOut = navDrawerItems.findItem(R.id.nav_drawer_logout);
+
+        initAnonymousUser();
     }
 
     @Override
     public void onBackPressed() {
         ApplicationUtilities.setCloseApp(true);
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(ApplicationUtilities.getLoggedUser() != null) initLoggedUser();
+        else initAnonymousUser();
+    }
+
+    public void initAnonymousUser(){
+        ApplicationUtilities.setLoggedUser(null);
+
+        navDrawerItemLogin.setVisible(true);
+        navDrawerItemLogOut.setVisible(false);
+        navDrawerItemProfile.setVisible(false);
+    }
+
+    public void initLoggedUser(){
+
+        navDrawerItemLogin.setVisible(false);
+        navDrawerItemLogOut.setVisible(true);
+        navDrawerItemProfile.setVisible(true);
     }
 }

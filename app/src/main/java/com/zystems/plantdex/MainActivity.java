@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AlertCustomDialog
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         containerRefresh = (RelativeLayout) findViewById(R.id.containerRefresh);
         btnRefresh = (ImageButton) findViewById(R.id.btnRefresh);
+        ApplicationUtilities.setLoggedUser(null);
 
         brandContainer.setAnimation(animation);
         ApplicationUtilities.setCloseApp(false);
