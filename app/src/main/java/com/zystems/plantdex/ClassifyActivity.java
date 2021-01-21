@@ -9,14 +9,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.zystems.plantdex.models.ClassifyPlantResponse;
 import com.zystems.plantdex.models.Plant;
+import com.zystems.plantdex.models.PlantClassificationResult;
 import com.zystems.plantdex.models.PlantsManagementResponse;
+import com.zystems.plantdex.viewmodels.ClassifyPlantResponseViewModel;
 import com.zystems.plantdex.viewmodels.PlantsManagementResponseViewModel;
 
 import java.io.File;
@@ -34,11 +40,12 @@ public class ClassifyActivity extends AppCompatActivity{
 
     private RelativeLayout layoutLoading;
     private RelativeLayout rootLayout;
+    private File selectedImageFile;
 
     private int REQ_CAPTURE_IMAGE = 1;
     private int REQ_OPEN_GALLERY = 2;
 
-    private PlantsManagementResponseViewModel viewModel;
+    private ClassifyPlantResponseViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +63,7 @@ public class ClassifyActivity extends AppCompatActivity{
 
         ApplicationUtilities.setClassifyPlantsResults(null);
 
-        viewModel = new ViewModelProvider(this).get(PlantsManagementResponseViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ClassifyPlantResponseViewModel.class);
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,10 +122,12 @@ public class ClassifyActivity extends AppCompatActivity{
         imgView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imgView.setImageURI(uri);
         imgView.setRotation(90f);
+        this.selectedImageFile = file;
         btnClassify.setVisibility(View.VISIBLE);
     }
 
     private void loadImageFromFile(Uri uri){
+        this.selectedImageFile = new File(uri.toString());
         imgView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imgView.setImageURI(uri);
         btnClassify.setVisibility(View.VISIBLE);
@@ -131,26 +140,37 @@ public class ClassifyActivity extends AppCompatActivity{
 
     private void classifyImage(){
 
+        if(selectedImageFile == null){
+            Toast.makeText(ClassifyActivity.this, "Please Set An Image to Classify!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         rootLayout.setEnabled(false);
         layoutLoading.setVisibility(View.VISIBLE);
 
-        viewModel.getPlantsManagementResponseObserver().observe(this, new Observer<PlantsManagementResponse>() {
+        viewModel.getClassifyPlantResponseObserver().observe(this, new Observer<ClassifyPlantResponse>() {
             @Override
-            public void onChanged(PlantsManagementResponse plantsManagementResponse) {
-                if(plantsManagementResponse != null){
-                    if(plantsManagementResponse.isSuccessful()){
-                        List<Plant> searchPlantResults = (plantsManagementResponse.getPlants() == null) ? new ArrayList<>() : plantsManagementResponse.getPlants();
-                        ApplicationUtilities.setClassifyPlantsResults(searchPlantResults);
+            public void onChanged(ClassifyPlantResponse classifyPlantResponse) {
+                if(classifyPlantResponse != null){
+                    if(classifyPlantResponse.isSuccessful()){
+                        List<PlantClassificationResult> searchPlantResults = (classifyPlantResponse.getPlantClassificationResults() == null) ? new ArrayList<>() : classifyPlantResponse.getPlantClassificationResults();
+                        /*
+                        if(classifyPlantResponse.getPlantClassificationResults() != null){
+                            if(classifyPlantResponse.getPlantClassificationResults().trim().length() > 2){
+                                searchPlantResults = new Gson().fromJson(classifyPlantResponse.getPlantClassificationResults(), new TypeToken<List<PlantClassificationResult>>(){}.getType());
+                            }
+                        }*/
 
+                        ApplicationUtilities.setClassifyPlantsResults(searchPlantResults);
                         startActivity(new Intent(ClassifyActivity.this, ClassifyResultsActivity.class));
                     }
-                    else Toast.makeText(ClassifyActivity.this, plantsManagementResponse.getMessage(), Toast.LENGTH_LONG).show();
+                    else Toast.makeText(ClassifyActivity.this, classifyPlantResponse.getMessage(), Toast.LENGTH_LONG).show();
                 }else Toast.makeText(ClassifyActivity.this, "Cannot connect to server", Toast.LENGTH_LONG).show();
 
                 layoutLoading.setVisibility(View.INVISIBLE);
                 rootLayout.setEnabled(true);
             }
         });
-        viewModel.getPlantByQueryName("cepa");
+        viewModel.postPlantClassificationRequest(selectedImageFile.getPath());
     }
 }

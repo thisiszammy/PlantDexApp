@@ -51,16 +51,9 @@ public class ClassifyResultsActivity extends AppCompatActivity implements Classi
 
     private void loadPlants(){
 
-        List<PlantClassificationResult> classificationResults = new ArrayList<>();
-
-        for(Plant plant : ApplicationUtilities.getClassifyPlantsResults()){
-
-            classificationResults.add(new PlantClassificationResult(plant.getId(), plant.getScientificName(), plant.getCommonName(), .96f));
-
-        }
+        List<PlantClassificationResult> classificationResults = ApplicationUtilities.getClassifyPlantsResults();
         String resultsCount = "Found " + classificationResults.size() + " Results";
         txtResultsCount.setText(resultsCount);
-
 
         classifyPlantAdapter.setPlantClassificationResultList(classificationResults);
     }
@@ -68,7 +61,7 @@ public class ClassifyResultsActivity extends AppCompatActivity implements Classi
     @Override
     public void onClick(PlantClassificationResult plantClassificationResult) {
         Intent intent = new Intent(new Intent(ClassifyResultsActivity.this, PlantDetailsActivity.class));
-        intent.putExtra(ApplicationUtilities.SEARCH_SELECTED_PLANT, plantClassificationResult.getId());
+        intent.putExtra(ApplicationUtilities.SEARCH_SELECTED_PLANT, plantClassificationResult.getPlant().getId());
         startActivity(intent);
     }
 }

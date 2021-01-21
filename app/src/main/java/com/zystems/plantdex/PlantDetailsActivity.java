@@ -25,6 +25,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.zystems.plantdex.adapters.CustomMapFragment;
 import com.zystems.plantdex.models.Plant;
+import com.zystems.plantdex.models.PlantClassificationResult;
 import com.zystems.plantdex.models.PlantLocation;
 
 import org.json.JSONArray;
@@ -141,9 +142,9 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
 
 
         if(ApplicationUtilities.getClassifyPlantsResults() != null && selectedPlant == null){
-            for(Plant plant : ApplicationUtilities.getClassifyPlantsResults()){
-                if(plant.getId() == plantId){
-                    this.selectedPlant = plant;
+            for(PlantClassificationResult plant : ApplicationUtilities.getClassifyPlantsResults()){
+                if(plant.getPlant().getId() == plantId){
+                    this.selectedPlant = plant.getPlant();
                     break;
                 }
             }

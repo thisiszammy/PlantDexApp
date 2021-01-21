@@ -2,6 +2,7 @@ package com.zystems.plantdex.network;
 
 import com.zystems.plantdex.models.AppRatingSubmission;
 import com.zystems.plantdex.models.ApplicationUser;
+import com.zystems.plantdex.models.ClassifyPlantResponse;
 import com.zystems.plantdex.models.ContributionSubmission;
 import com.zystems.plantdex.models.ContributionsManagementResponse;
 import com.zystems.plantdex.models.CustomerSupportManagementResponse;
@@ -9,6 +10,7 @@ import com.zystems.plantdex.models.LoginModel;
 import com.zystems.plantdex.models.PlantsManagementResponse;
 import com.zystems.plantdex.models.RemoteConfigResponse;
 import com.zystems.plantdex.models.ReportedComplaintSubmission;
+import com.zystems.plantdex.models.UploadedImageFile;
 import com.zystems.plantdex.models.UsersManagementResponse;
 
 import retrofit2.Call;
@@ -28,6 +30,10 @@ public interface APIService {
     // Plant Management Endpoints
     @GET("plants/search/name")
     Call<PlantsManagementResponse> getPlantByQueryName(@Query("name") String query);
+
+    @Headers("Content-Type:application/json")
+    @POST("plants/classify")
+    Call<ClassifyPlantResponse> postPlantClassificationRequest(@Body UploadedImageFile uploadedImageFile);
 
 
     // Contributions Management Endpoints

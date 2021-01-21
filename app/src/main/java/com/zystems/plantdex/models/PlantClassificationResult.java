@@ -1,40 +1,22 @@
 package com.zystems.plantdex.models;
 
-public class PlantClassificationResult {
-    private int id;
-    private String scientificName;
-    private String commonName;
+import java.io.Serializable;
+
+public class PlantClassificationResult  {
+    private Plant plant;
     private double percentConfidence;
 
-    public PlantClassificationResult(int id, String scientificName, String commonName, double percentConfidence) {
-        this.id = id;
-        this.scientificName = scientificName;
-        this.commonName = commonName;
+    public PlantClassificationResult(Plant plant, double percentConfidence) {
+        this.plant = plant;
         this.percentConfidence = percentConfidence;
     }
 
-    public int getId() {
-        return id;
+    public Plant getPlant() {
+        return plant;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getScientificName() {
-        return scientificName;
-    }
-
-    public void setScientificName(String scientificName) {
-        this.scientificName = scientificName;
-    }
-
-    public String getCommonName() {
-        return commonName;
-    }
-
-    public void setCommonName(String commonName) {
-        this.commonName = commonName;
+    public void setPlant(Plant plant) {
+        this.plant = plant;
     }
 
     public double getPercentConfidence() {

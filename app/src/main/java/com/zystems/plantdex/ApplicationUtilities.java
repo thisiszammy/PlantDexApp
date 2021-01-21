@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 
 import com.zystems.plantdex.models.ApplicationUser;
 import com.zystems.plantdex.models.Plant;
+import com.zystems.plantdex.models.PlantClassificationResult;
 import com.zystems.plantdex.models.PlantLocation;
 
 import java.util.List;
@@ -80,13 +81,13 @@ public class ApplicationUtilities {
 
 
     // Classify Plant Results
-    public static List<Plant> classifyPlantsResults;
+    public static List<PlantClassificationResult> classifyPlantsResults;
 
-    public static List<Plant> getClassifyPlantsResults() {
+    public static List<PlantClassificationResult> getClassifyPlantsResults() {
         return classifyPlantsResults;
     }
 
-    public static void setClassifyPlantsResults(List<Plant> classifyPlantsResults) {
+    public static void setClassifyPlantsResults(List<PlantClassificationResult> classifyPlantsResults) {
         ApplicationUtilities.classifyPlantsResults = classifyPlantsResults;
     }
 }

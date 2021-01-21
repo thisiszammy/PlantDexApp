@@ -48,9 +48,9 @@ public class ClassifyPlantAdapter extends RecyclerView.Adapter<ClassifyPlantAdap
 
     @Override
     public void onBindViewHolder(@NonNull PlantViewHolder holder, int position) {
-        String scientificName = plantClassificationResultList.get(position).getScientificName();
-        String commonName = "\""+plantClassificationResultList.get(position).getCommonName()+"\"";
-        String percent = "Confidence : " + String.format("%.0f",(plantClassificationResultList.get(position).getPercentConfidence() * 100)) + ""  + "%";
+        String scientificName = plantClassificationResultList.get(position).getPlant().getScientificName();
+        String commonName = "\""+plantClassificationResultList.get(position).getPlant().getCommonName()+"\"";
+        String percent = "Confidence : " + String.format("%.2f",(plantClassificationResultList.get(position).getPercentConfidence() * 100)) + ""  + "%";
 
         SpannableString spannableString = new SpannableString(scientificName);
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
