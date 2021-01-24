@@ -13,6 +13,8 @@ android {
         }
 
         buildConfigField("String", "API_KEY_PDEX", properties['plantdexapikey'])
+        buildConfigField("String", "ENVIRONMENT_ADDRESS", properties['environmentAddress'])
+
 
         manifestPlaceholders = [API_KEY_GOOGLE: properties.getProperty("googleapikey", "")]
 

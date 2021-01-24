@@ -20,7 +20,7 @@ public class RetroInstance {
     // API Environments
     public static String EMULATOR_ENVIRONMENT = "http://10.0.2.2:44358/api/";
     public static String TEST_ENVIRONMENT = "http://10.0.2.2:44358/api/";
-    public static String LIVE_ENVIRONMENT = "http://202.136.95.202:9811/api/";
+    public static String LIVE_ENVIRONMENT = BuildConfig.ENVIRONMENT_ADDRESS;
     public static String ACTIVE_ENVIRONMENT = LIVE_ENVIRONMENT;
 
     // API Remote Config Calls
