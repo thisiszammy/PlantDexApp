@@ -55,7 +55,11 @@ public class SearchPlantAdapter extends RecyclerView.Adapter<SearchPlantAdapter.
 
         holder.txtScientificName.setText(spannableString);
         holder.txtCommonName.setText(commonName);
-        holder.txtPercentConfidence.setText(plants.get(position).getShortDescription());
+        if(plants.get(position).getShortDescription().length() > plants.get(position).getDescription().length()){
+            holder.txtPercentConfidence.setText(plants.get(position).getDescription());
+        }else{
+            holder.txtPercentConfidence.setText(plants.get(position).getShortDescription());
+        }
     }
 
     @Override

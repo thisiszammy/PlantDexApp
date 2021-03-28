@@ -42,7 +42,7 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@color/colorAccent"
                     android:text="@string/label_search"
-                    android:textSize="28dp"
+                    android:textSize="18dp"
                     android:fontFamily="@font/noto_sans_bold"
                     android:layout_toRightOf="@id/btnBack"
                     />

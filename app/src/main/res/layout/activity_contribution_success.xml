@@ -30,7 +30,7 @@
                     android:textColor="@color/colorAccent"
                     android:layout_centerVertical="true"
                     android:text="@string/label_contribute"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/noto_sans_bold"
                     android:layout_marginHorizontal="120dp"

@@ -11,11 +11,12 @@ public class Plant extends AuditableEntity{
     private String attributes;
     private String locations;
     private String _Id;
+    private byte[] plantImage;
 
     public Plant() {
     }
 
-    public Plant(int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id) {
+    public Plant(int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id, byte[] plantImage) {
         this.id = id;
         this.commonName = commonName;
         this.scientificName = scientificName;
@@ -24,9 +25,10 @@ public class Plant extends AuditableEntity{
         this.attributes = attributes;
         this.locations = locations;
         this._Id = _Id;
+        this.plantImage = plantImage;
     }
 
-    public Plant(String createdBy, Date createdOn, String lastModifiedBy, Date lastModifiedOn, String previousValue, int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id) {
+    public Plant(String createdBy, Date createdOn, String lastModifiedBy, Date lastModifiedOn, String previousValue, int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id, byte[] plantImage) {
         super(createdBy, createdOn, lastModifiedBy, lastModifiedOn, previousValue);
         this.id = id;
         this.commonName = commonName;
@@ -36,6 +38,7 @@ public class Plant extends AuditableEntity{
         this.attributes = attributes;
         this.locations = locations;
         this._Id = _Id;
+        this.plantImage = plantImage;
     }
 
     public int getId() {
@@ -100,5 +103,13 @@ public class Plant extends AuditableEntity{
 
     public void set_Id(String _Id) {
         this._Id = _Id;
+    }
+
+    public byte[] getPlantImage() {
+        return plantImage;
+    }
+
+    public void setPlantImage(byte[] plantImage) {
+        this.plantImage = plantImage;
     }
 }
