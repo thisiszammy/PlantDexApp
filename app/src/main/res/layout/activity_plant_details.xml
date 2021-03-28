@@ -145,18 +145,6 @@
                                 android:textColor="@color/colorBlack"
                                 android:id="@+id/txtCommonName"
                                 />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Short Description"
-                                android:textSize="10sp"
-                                android:textColor="@color/colorBlack"
-                                android:id="@+id/txtShortDescription"
-
-                                />
-
-
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -182,10 +170,63 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="Description"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/lblDesciption"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:layout_below="@id/lblDesciption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="@string/lorem_ipsum"
                             android:textColor="@color/colorBlack"
                             android:fontFamily="@font/roboto_regular"
                             android:id="@+id/txtLongDescription"
+                            />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/colorWhite"
+                    app:cardElevation="2dp"
+                    app:cardMaxElevation="3dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Medicinal Uses"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/lblMedicinalUses"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+
+                        <TextView
+                            android:layout_below="@id/lblMedicinalUses"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lorem_ipsum"
+                            android:textColor="@color/colorBlack"
+                            android:fontFamily="@font/roboto_regular"
+                            android:id="@+id/txtShortDescription"
                             />
 
 

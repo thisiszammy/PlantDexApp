@@ -159,13 +159,8 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
         txtScientificName = (TextView) findViewById(R.id.txtScientificName);
         txtCommonName.setText(selectedPlant.getCommonName());
 
-        if(selectedPlant.getShortDescription().length() > selectedPlant.getDescription().length()){
-            txtLongDescription.setText(selectedPlant.getShortDescription());
-            txtShortDescription.setText(selectedPlant.getDescription());
-        }else{
-            txtLongDescription.setText(selectedPlant.getDescription());
-            txtShortDescription.setText(selectedPlant.getShortDescription());
-        }
+        txtShortDescription.setText(selectedPlant.getShortDescription());
+        txtLongDescription.setText(selectedPlant.getDescription());
 
         SpannableString spannableString = new SpannableString(selectedPlant.getScientificName());
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
