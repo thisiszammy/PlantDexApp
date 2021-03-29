@@ -2,13 +2,17 @@ package com.zystems.plantdex;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -39,6 +43,7 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
     private GoogleMap googleMap;
     private ScrollView scrollContainer;
     private Plant selectedPlant;
+    private ImageView imgPlant;
 
     private TextView txtScientificName, txtCommonName, txtShortDescription,
         txtLongDescription;
@@ -57,6 +62,7 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
         txtCommonName = (TextView) findViewById(R.id.txtCommonName);
         txtShortDescription = (TextView) findViewById(R.id.txtShortDescription);
         txtLongDescription = (TextView) findViewById(R.id.txtLongDescription);
+        imgPlant = (ImageView) findViewById(R.id.imgPlant);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +171,12 @@ public class PlantDetailsActivity extends FragmentActivity implements OnMapReady
         SpannableString spannableString = new SpannableString(selectedPlant.getScientificName());
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
         txtScientificName.setText(spannableString);
+
+        if(selectedPlant.getPlantImage() != null){
+            byte[] plantImage = Base64.decode(selectedPlant.getPlantImage(), Base64.DEFAULT);
+            Bitmap bmp = BitmapFactory.decodeByteArray(plantImage, 0, plantImage.length);
+            imgPlant.setImageBitmap(bmp);
+        }
 
     }
 

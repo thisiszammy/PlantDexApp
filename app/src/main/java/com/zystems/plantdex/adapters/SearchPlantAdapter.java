@@ -1,8 +1,12 @@
 package com.zystems.plantdex.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +53,7 @@ public class SearchPlantAdapter extends RecyclerView.Adapter<SearchPlantAdapter.
     public void onBindViewHolder(@NonNull PlantViewHolder holder, int position) {
         String scientificName = plants.get(position).getScientificName();
         String commonName = "\""+plants.get(position).getCommonName()+"\"";
+        String plantImageString = plants.get(position).getPlantImage();
 
         SpannableString spannableString = new SpannableString(scientificName);
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
@@ -56,6 +61,13 @@ public class SearchPlantAdapter extends RecyclerView.Adapter<SearchPlantAdapter.
         holder.txtScientificName.setText(spannableString);
         holder.txtCommonName.setText(commonName);
         holder.txtPercentConfidence.setText("");
+
+        if(plantImageString != null){
+            byte[] plantImage = Base64.decode(plantImageString, Base64.DEFAULT);
+            Bitmap bmp = BitmapFactory.decodeByteArray(plantImage, 0, plantImage.length);
+            holder.imgPlant.setImageBitmap(bmp);
+        }
+
     }
 
     @Override

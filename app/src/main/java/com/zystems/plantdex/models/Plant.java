@@ -11,12 +11,12 @@ public class Plant extends AuditableEntity{
     private String attributes;
     private String locations;
     private String _Id;
-    private byte[] plantImage;
+    private String plantImage;
 
     public Plant() {
     }
 
-    public Plant(int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id, byte[] plantImage) {
+    public Plant(int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id, String plantImage) {
         this.id = id;
         this.commonName = commonName;
         this.scientificName = scientificName;
@@ -28,7 +28,7 @@ public class Plant extends AuditableEntity{
         this.plantImage = plantImage;
     }
 
-    public Plant(String createdBy, Date createdOn, String lastModifiedBy, Date lastModifiedOn, String previousValue, int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id, byte[] plantImage) {
+    public Plant(String createdBy, Date createdOn, String lastModifiedBy, Date lastModifiedOn, String previousValue, int id, String commonName, String scientificName, String shortDescription, String description, String attributes, String locations, String _Id, String plantImage) {
         super(createdBy, createdOn, lastModifiedBy, lastModifiedOn, previousValue);
         this.id = id;
         this.commonName = commonName;
@@ -105,11 +105,11 @@ public class Plant extends AuditableEntity{
         this._Id = _Id;
     }
 
-    public byte[] getPlantImage() {
+    public String getPlantImage() {
         return plantImage;
     }
 
-    public void setPlantImage(byte[] plantImage) {
+    public void setPlantImage(String plantImage) {
         this.plantImage = plantImage;
     }
 }

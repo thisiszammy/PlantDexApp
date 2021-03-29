@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -26,6 +30,13 @@ import com.zystems.plantdex.viewmodels.ClassifyPlantResponseViewModel;
 import com.zystems.plantdex.viewmodels.PlantsManagementResponseViewModel;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,60 +105,6 @@ public class ClassifyActivity extends AppCompatActivity{
             }
         });
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQ_CAPTURE_IMAGE) {
-            if(resultCode == RESULT_OK){
-                String returnedImagePath = data.getData().toString();
-                File file = new File(returnedImagePath);
-                loadImageFromFile(file);
-                return;
-            }
-        }else if(requestCode == REQ_OPEN_GALLERY){
-            if(resultCode == RESULT_OK){
-                loadImageFromFile(data.getData());
-                return;
-            }
-        }
-
-        btnClassify.setVisibility(View.INVISIBLE);
-    }
-
-    private void loadImageFromFile(File file){
-        Uri uri = Uri.fromFile(file);
-        imgView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        imgView.setImageURI(uri);
-        imgView.setRotation(90f);
-        this.selectedImageFile = file;
-        btnClassify.setVisibility(View.VISIBLE);
-    }
-
-    private void loadImageFromFile(Uri uri){
-        this.selectedImageFile = new File(uri.toString());
-        imgView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        imgView.setImageURI(uri);
-        btnClassify.setVisibility(View.VISIBLE);
-    }
-
-    private void openGallery(){
-        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(gallery, REQ_OPEN_GALLERY);
-    }
-
-    private void classifyImage(){
-
-        if(selectedImageFile == null){
-            Toast.makeText(ClassifyActivity.this, "Please Set An Image to Classify!", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        rootLayout.setEnabled(false);
-        layoutLoading.setVisibility(View.VISIBLE);
-
         viewModel.getClassifyPlantResponseObserver().observe(this, new Observer<ClassifyPlantResponse>() {
             @Override
             public void onChanged(ClassifyPlantResponse classifyPlantResponse) {
@@ -171,6 +128,105 @@ public class ClassifyActivity extends AppCompatActivity{
                 rootLayout.setEnabled(true);
             }
         });
-        viewModel.postPlantClassificationRequest(selectedImageFile.getPath());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQ_CAPTURE_IMAGE) {
+            if(resultCode == RESULT_OK){
+                String returnedImagePath = data.getData().toString();
+                File file = new File(returnedImagePath);
+                loadImageFromFile(file);
+                Log.d(ClassifyActivity.class.getSimpleName(), "Capture Image");
+                return;
+            }
+        }else if(requestCode == REQ_OPEN_GALLERY){
+            if(resultCode == RESULT_OK){
+                loadImageFromFile(data.getData());
+                Log.d(ClassifyActivity.class.getSimpleName(), "Open Image");
+                return;
+            }
+        }
+
+        btnClassify.setVisibility(View.INVISIBLE);
+    }
+
+    private void loadImageFromFile(File file){
+        Uri uri = Uri.fromFile(file);
+        imgView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imgView.setImageURI(uri);
+        imgView.setRotation(90f);
+        this.selectedImageFile = file;
+        btnClassify.setVisibility(View.VISIBLE);
+    }
+
+    private void loadImageFromFile(Uri uri){
+        this.selectedImageFile = new File(getImageRealPath(getContentResolver(), uri, null));
+        imgView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imgView.setImageURI(uri);
+        btnClassify.setVisibility(View.VISIBLE);
+    }
+
+    private String getImageRealPath(ContentResolver contentResolver, Uri uri, String whereClause)
+    {
+        String ret = "";
+        // Query the uri with condition.
+        Cursor cursor = contentResolver.query(uri, null, whereClause, null, null);
+        if(cursor!=null)
+        {
+            boolean moveToFirst = cursor.moveToFirst();
+            if(moveToFirst)
+            {
+                // Get columns name by uri type.
+                String columnName = MediaStore.Images.Media.DATA;
+                if( uri==MediaStore.Images.Media.EXTERNAL_CONTENT_URI )
+                {
+                    columnName = MediaStore.Images.Media.DATA;
+                }else if( uri==MediaStore.Audio.Media.EXTERNAL_CONTENT_URI )
+                {
+                    columnName = MediaStore.Audio.Media.DATA;
+                }else if( uri==MediaStore.Video.Media.EXTERNAL_CONTENT_URI )
+                {
+                    columnName = MediaStore.Video.Media.DATA;
+                }
+                // Get column index.
+                int imageColumnIndex = cursor.getColumnIndex(columnName);
+                // Get column value which is the uri related file local path.
+                ret = cursor.getString(imageColumnIndex);
+            }
+        }
+        return ret;
+    }
+
+
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, REQ_OPEN_GALLERY);
+    }
+
+    private void classifyImage(){
+
+        if(selectedImageFile == null){
+            Toast.makeText(ClassifyActivity.this, "Please Set An Image to Classify!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        new ClassifierObserverTask().execute();
+    }
+
+    private class ClassifierObserverTask extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected void onPreExecute() {
+            rootLayout.setEnabled(false);
+            layoutLoading.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            viewModel.postPlantClassificationRequest(selectedImageFile.getPath());
+            return null;
+        }
     }
 }

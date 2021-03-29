@@ -1,9 +1,12 @@
 package com.zystems.plantdex.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Base64;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +54,7 @@ public class ClassifyPlantAdapter extends RecyclerView.Adapter<ClassifyPlantAdap
         String scientificName = plantClassificationResultList.get(position).getPlant().getScientificName();
         String commonName = "\""+plantClassificationResultList.get(position).getPlant().getCommonName()+"\"";
         String percent = "Confidence : " + String.format("%.2f",(plantClassificationResultList.get(position).getPercentConfidence() * 100)) + ""  + "%";
+        String plantImageString = plantClassificationResultList.get(position).getPlant().getPlantImage();
 
         SpannableString spannableString = new SpannableString(scientificName);
         spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
@@ -60,6 +64,12 @@ public class ClassifyPlantAdapter extends RecyclerView.Adapter<ClassifyPlantAdap
         holder.txtPercentConfidence.setText(percent);
         holder.txtPercentConfidence.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f);
         holder.txtPercentConfidence.setTypeface(null, Typeface.BOLD);
+
+        if(plantImageString != null){
+            byte[] plantImage = Base64.decode(plantImageString, Base64.DEFAULT);
+            Bitmap bmp = BitmapFactory.decodeByteArray(plantImage, 0, plantImage.length);
+            holder.imgPlant.setImageBitmap(bmp);
+        }
     }
 
     @Override
