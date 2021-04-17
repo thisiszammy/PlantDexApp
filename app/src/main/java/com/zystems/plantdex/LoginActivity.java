@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 }else Toast.makeText(LoginActivity.this, "Cannot connect to server", Toast.LENGTH_LONG).show();
 
                 rootLayout.setEnabled(true);
-                layoutLoading.setVisibility(View.VISIBLE);
+                layoutLoading.setVisibility(View.INVISIBLE);
             }
         });
     }

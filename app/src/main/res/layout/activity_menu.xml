@@ -114,7 +114,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_description1"
+                        android:text="@string/app_description2"
                         android:layout_marginHorizontal="8dp"
                         android:textColor="@color/colorBlack"
                         android:layout_below="@id/descriptionPlantDex"

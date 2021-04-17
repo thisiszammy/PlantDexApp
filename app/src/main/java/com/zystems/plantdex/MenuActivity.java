@@ -84,7 +84,7 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
                         break;
                     case R.id.nav_drawer_report:
                         if(ApplicationUtilities.getLoggedUser() != null) showIssueReportDialog();
-                        else Toast.makeText(MenuActivity.this, "You need to be logged in to rate", Toast.LENGTH_SHORT).show();
+                        else Toast.makeText(MenuActivity.this, "You need to be logged in to give feedback", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
@@ -107,7 +107,6 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
                 });
 
         navDrawerItems = navigationView.getMenu();
-        navDrawerItemProfile = navDrawerItems.findItem(R.id.nav_drawer_profile);
         navDrawerItemLogin = navDrawerItems.findItem(R.id.nav_drawer_login);
         navDrawerItemLogOut = navDrawerItems.findItem(R.id.nav_drawer_logout);
 
@@ -131,9 +130,9 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
     private void initAnonymousUser(){
         ApplicationUtilities.setLoggedUser(null);
 
-        navDrawerItemLogin.setVisible(true);
         navDrawerItemLogOut.setVisible(false);
         navDrawerItemProfile.setVisible(false);
+        navDrawerItemLogin.setVisible(true);
     }
 
     private void initLoggedUser(){

@@ -1,19 +1,14 @@
 <resources>
     <string name="app_name">PlantDex</string>
 
-    <string name="app_description1">PlantDex is a Lorem ipsum dolor sit amet, consecte
-        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
-        a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
-        iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
-        unt in culpa qui officia deserunt mollit anim id est laborum. </string>
+    <string name="app_description1">PlantDex is the application that was developed as a proof of concept for the study of the research group of Gerarld Merales,
+        Zoe Pasiliao, and Michael Zamoras. The main highlight is the Classifier section of this application, with this application, anyone can take a photo of a plant
+        and it will be automatically classified by the image classifier module that is being hosted on the same server as the app. Do note that the accuracy of the classification
+        would be highly dependent on the quality of the image as well as the datasets that were used to train the module.</string>
 
-    <string name="app_description2">PlantDex is a Lorem ipsum dolor sit amet, consecte
-        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
-        a. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fug
-        iat nulla pariatur. Excepteur sint occaecat cupidatat non proident, s
-        unt in culpa qui officia deserunt mollit anim id est laborum. </string>
+    <string name="app_description2">A few reminders when using this app. The application would require GPS Location, Camera, and Storage Permissions to run properly. These
+        permissions are required for the Mapping and Classifying Module to work. Also, when classifying an image make sure the image is well-focused on the plant\'s leaf and
+        for best results please take or provide a picture with decent lighting and quality.</string>
 
     <!-- navigation drawer -->
     <string name="label_features">Features</string>
@@ -62,9 +57,13 @@
     </string>
 
     <string name="lorem_ipsum_rate">
-        Please rate X out of Y how much this app helped you!  PlantDex is a Lorem ipsum dolor sit amet, consecte
-        tur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqu
-        a. Ut enim ad minim veniam, quis nostrud ex
+        Are we helpful?
+Kindly rate the PlantDex application. (1-Needs Improvement to 5-Very Good)
+    </string>
+
+    <string name="lorem_ipsum_rate2">
+    PlantDex is a mobile application that uses a server hosted image classifier in identifying plant species using images from a user. With that, the group would really
+    appreciate feedbacks from you, our dear users to improve our services. Kindly write down your feedback below. Thank you!
     </string>
 
     <!-- Contribution Form -->

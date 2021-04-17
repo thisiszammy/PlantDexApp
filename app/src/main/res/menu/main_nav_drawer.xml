@@ -35,10 +35,6 @@
                     android:icon="@drawable/ic_custom_login"
                     />
 
-                <item android:id="@+id/nav_drawer_profile"
-                    android:title="@string/label_profile"
-                    android:icon="@drawable/ic_user"
-                    />
 
                 <item android:id="@+id/nav_drawer_logout"
                     android:title="@string/label_logout"
