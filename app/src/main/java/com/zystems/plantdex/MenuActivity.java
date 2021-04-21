@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +35,7 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
     private Toolbar toolbar;
 
     private Menu navDrawerItems;
-    private MenuItem navDrawerItemProfile, navDrawerItemLogin, navDrawerItemLogOut;
+    private MenuItem navDrawerItemLogin, navDrawerItemLogOut;
     private CustomerSupportManagementResponseViewModel viewModel;
     private RelativeLayout rootLayout, layoutLoading;
 
@@ -75,8 +76,11 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
                         startActivity(new Intent(MenuActivity.this , ContributeActivity.class));
                         break;
                     case R.id.nav_drawer_logout:
-                        initAnonymousUser();
+                        ApplicationUtilities.setLoggedUser(null);
                         Toast.makeText(MenuActivity.this, "Successfully Logged Out", Toast.LENGTH_SHORT).show();
+                        Intent intent = getIntent();
+                        finish();
+                        startActivity(intent);
                         break;
                     case R.id.nav_drawer_rate:
                         if(ApplicationUtilities.getLoggedUser() != null) showRateAppDialog();
@@ -129,17 +133,15 @@ public class MenuActivity extends AppCompatActivity implements RateAppDialog.Rat
 
     private void initAnonymousUser(){
         ApplicationUtilities.setLoggedUser(null);
+        navigationView.getMenu().findItem(R.id.nav_drawer_login).setVisible(true);
+        navigationView.getMenu().findItem(R.id.nav_drawer_logout).setVisible(false);
 
-        navDrawerItemLogOut.setVisible(false);
-        navDrawerItemProfile.setVisible(false);
-        navDrawerItemLogin.setVisible(true);
     }
 
     private void initLoggedUser(){
 
         navDrawerItemLogin.setVisible(false);
         navDrawerItemLogOut.setVisible(true);
-        navDrawerItemProfile.setVisible(true);
     }
 
     private void showRateAppDialog(){

@@ -81,4 +81,8 @@ Kindly rate the PlantDex application. (1-Needs Improvement to 5-Very Good)
     <string name="label_contribute_success_desc2">You have successfully submitted a contribution! The plant data will be checked by the administrators and changes will
         be made to the database accordingly. Thank you for contributing!</string>
 
+    <string name="update_notice">
+        The version of PlantDex that you have installed does not match the version supported by the server. Please update or downgrade the app to the version
+        supported by the server. Different releases of the app can be found in github => (https://github.com/thisiszammy/PlantDexApp/releases)
+    </string>
 </resources>

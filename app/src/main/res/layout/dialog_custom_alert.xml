@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtAlertMessage"
-        android:text="@string/lorem_ipsum"
+        android:text="@string/update_notice"
         android:textColor="@color/colorPrimaryDark"
         android:fontFamily="@font/noto_sans_bold"
         android:textSize="12sp"
