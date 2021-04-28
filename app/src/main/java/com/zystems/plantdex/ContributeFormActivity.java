@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.Application;
 import android.content.Intent;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -165,8 +166,6 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
 
     private void saveContributionForm(){
 
-        rootLayout.setEnabled(false);
-        layoutLoading.setVisibility(View.VISIBLE);
 
         String remarks = txtRemarks.getText().toString().trim();
         String scientificName = txtScientificName.getText().toString().trim();
@@ -206,6 +205,25 @@ public class ContributeFormActivity extends AppCompatActivity  implements OnMapR
             }
         });
 
-        viewModel.postContributionSubmission(scientificName, commonName, remarks, ApplicationUtilities.getContributePlantLocations());
+        new SendContributionTask().execute(scientificName, commonName, remarks);
+    }
+
+
+    private class SendContributionTask extends AsyncTask<String, Void, Void>{
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            rootLayout.setEnabled(false);
+            layoutLoading.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            String scientificName = strings[0];
+            String commonName = strings[1];
+            String remarks = strings[2];
+            viewModel.postContributionSubmission(scientificName, commonName, remarks, ApplicationUtilities.getContributePlantLocations(), ApplicationUtilities.getContributedPlantImageFile().getPath());
+            return null;
+        }
     }
 }

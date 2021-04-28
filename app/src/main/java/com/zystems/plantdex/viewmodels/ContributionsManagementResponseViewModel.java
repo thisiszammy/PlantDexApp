@@ -34,11 +34,11 @@ public class ContributionsManagementResponseViewModel extends ViewModel {
         return contributionsManagementResponseMutableLiveData;
     }
 
-    public void postContributionSubmission(String scientificName, String commonName, String remarks, List<PlantLocation> locations){
+    public void postContributionSubmission(String scientificName, String commonName, String remarks, List<PlantLocation> locations, String filePath){
         APIService apiService = RetroInstance.getRetrofitClient().create(APIService.class);
 
         Call<ContributionsManagementResponse> contributionsManagementResponseCall = apiService.postContributionSubmission(
-                new ContributionSubmission(0, scientificName,commonName, remarks, (new Gson()).toJson(locations)));
+                new ContributionSubmission(0, scientificName,commonName, remarks, (new Gson()).toJson(locations), filePath));
 
         contributionsManagementResponseCall.enqueue(new Callback<ContributionsManagementResponse>() {
             @Override

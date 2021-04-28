@@ -9,6 +9,7 @@ import com.zystems.plantdex.models.Plant;
 import com.zystems.plantdex.models.PlantClassificationResult;
 import com.zystems.plantdex.models.PlantLocation;
 
+import java.io.File;
 import java.util.List;
 
 public class ApplicationUtilities {
@@ -39,10 +40,18 @@ public class ApplicationUtilities {
 
     // Contribute Form and Contribute Map Functionality
     private static List<PlantLocation> contributePlantLocations;
+    private static File contributedFile;
     private static boolean hasChanged;
 
     public static List<PlantLocation> getContributePlantLocations() {
         return contributePlantLocations;
+    }
+    public static void setContributedPlantImageFile(File file){
+        contributedFile = file;
+    }
+
+    public static File getContributedPlantImageFile(){
+        return contributedFile;
     }
 
     public static void setContributePlantLocations(List<PlantLocation> contributePlantLocations) {

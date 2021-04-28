@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -91,8 +92,6 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
 
     private void loadPlants(String queryName){
 
-        layoutLoading.setVisibility(View.VISIBLE);
-        rootLayout.setEnabled(false);
         viewModel.getPlantsManagementResponseObserver().observe(SearchActivity.this, new Observer<PlantsManagementResponse>() {
             @Override
             public void onChanged(PlantsManagementResponse plantsManagementResponse) {
@@ -112,7 +111,8 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
                 rootLayout.setEnabled(true);
             }
         });
-        viewModel.getPlantByQueryName(queryName);
+
+        new SearchPlantObserverTask().execute(queryName);
     }
 
     @Override
@@ -120,5 +120,24 @@ public class SearchActivity extends AppCompatActivity implements SearchPlantAdap
         Intent intent = new Intent(SearchActivity.this, PlantDetailsActivity.class);
         intent.putExtra(ApplicationUtilities.SEARCH_SELECTED_PLANT, plant.getId());
         startActivity(intent);
+    }
+
+
+    private class SearchPlantObserverTask extends AsyncTask<String, Void, Void>{
+
+
+        @Override
+        protected void onPreExecute() {
+            layoutLoading.setVisibility(View.VISIBLE);
+            rootLayout.setEnabled(false);
+        }
+
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            viewModel.getPlantByQueryName(strings[0]);
+            return null;
+        }
+
     }
 }
